@@ -4,19 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>الدورة 1 | خطة إطلاق مشروعك</title>
-    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
   </head>
   <body>
     <header class="site-header">
       <div class="container nav-wrap">
-        <a class="logo" href="index.html">Arabic<span>Business</span></a>
+        <a class="logo" href="../index.html">Arabic<span>Business</span></a>
         <button class="nav-toggle" aria-label="فتح القائمة" aria-expanded="false">☰</button>
         <nav class="nav">
-          <a href="index.html">الرئيسية</a>
-          <a href="courses.html">برامجنا التعليمية</a>
-          <a class="active" href="e-library.html">المكتبة الرقمية</a>
-          <a href="blog.html">مدونة الأعمال</a>
-          <a href="contact.html">اتصل بنا</a>
+          <a href="../index.html">الرئيسية</a>
+          <a href="../courses.html">برامجنا التعليمية</a>
+          <a class="active" href="../e-library.html">المكتبة الرقمية</a>
+          <a href="../blog.html">مدونة الأعمال</a>
+          <a href="../news.html">أخبار البزنيس</a>
+          <a href="../contact.html">اتصل بنا</a>
         </nav>
       </div>
     </header>
@@ -36,16 +37,28 @@
       </section>
     </main>
 
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="reveal">
-          <div class="cta-row cta-row--center">
-            <a class="btn btn-primary" href="mailto:steps.studio.info@gmail.com?subject=Order%20Request:%20Document&body=Hello%20ArabicBusiness%20Team,%0D%0A%0D%0AI%20would%20like%20to%20order%20this%20document.%20Please%20let%20me%20know%20the%20next%20steps.%0D%0A%0D%0AThank%20you!">اطلب نسختك الآن</a>
-            <a class="btn btn-secondary" href="https://drive.google.com/file/d/1GA_zPG8iMtovx6lqQZTVKUGSQaaHuW7-/view?usp=sharing">ثم افتح الكتاب هنا</a>
-          </div>
-        </div>
+<section class="hero" style="padding: 0 !important; background: none;">
+  <div class="container">
+    <div style="width: 100%; display: block; clear: both; text-align: center; padding: 20px 0 !important; margin: 0 !important;">
+      
+      <div class="cta-row cta-row--center" style="display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap;">
+        
+        <a id="auto-order-btn" class="btn btn-primary" 
+           style="display: inline-block !important; padding: 12px 30px !important; margin: 0 !important;" 
+           href="mailto:steps.studio.info@gmail.com">
+           اطلب نسختك الآن
+        </a>
+
+        <a class="btn btn-secondary" 
+           style="display: inline-block !important; padding: 12px 30px !important; margin: 0 !important;" 
+           href="https://drive.google.com/file/d/1GA_zPG8iMtovx6lqQZTVKUGSQaaHuW7-/view?usp=sharing" target="_blank">
+           ثم افتح الكتاب هنا
+        </a>
+
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
     <footer class="site-footer">
       <div class="container">
@@ -53,6 +66,32 @@
         <span>مكتبة رقمية بكفاءة عالية</a>
       </div>
     </footer>
-    <script src="assets/js/script.js"></script>
+    <script src="../assets/js/script.js"></script>
+        <script>
+document.addEventListener("DOMContentLoaded", function() {
+    // 1. Find the Page Title (H1)
+    const pageTitle = document.querySelector('h1');
+    
+    // 2. Find the Order Button
+    const orderBtn = document.getElementById('auto-order-btn');
+
+    if (pageTitle && orderBtn) {
+        const titleText = pageTitle.innerText.trim();
+        
+        // Prepare the Arabic Gmail Content
+        const subject = encodeURIComponent("طلب اشتراك: " + titleText);
+        const body = encodeURIComponent(
+            "تحية طيبة فريق ArabicBusiness،\n\n" +
+            "أود الاستفسار بخصوص تفاصيل الحصول على هذه النسخة:\n" + 
+            titleText + "\n\n" +
+            "أرجو تزويدي بالخطوات اللازمة لإتمام العملية.\n\n" +
+            "مع الشكر الجزيل."
+        ).replace(/%0A/g, "%0D%0A"); // Ensures line breaks work in all mail apps
+
+        // Set the final mailto link
+        orderBtn.href = "mailto:steps.studio.info@gmail.com?subject=" + subject + "&body=" + body;
+    }
+});
+</script>
   </body>
 </html>
