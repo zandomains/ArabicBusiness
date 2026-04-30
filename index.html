@@ -2,14 +2,13 @@
 <html lang="ar" dir="rtl">
   <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BGMEEQSW99"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-BGMEEQSW99');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BGMEEQSW99"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-BGMEEQSW99');
+    </script>
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,6 +17,17 @@
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
+
+    <!-- Animated orbs background -->
+    <div class="bg-orbs" aria-hidden="true">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Floating particles -->
+    <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
     <header class="site-header">
       <div class="container nav-wrap">
         <a class="logo" href="index.html">Arabic<span>Business</span></a>
@@ -34,33 +44,37 @@
     </header>
 
     <!-- Breaking news ticker -->
-<div class="ticker-wrap">
-  <div class="ticker-inner">
-    <span class="ticker-item"><span class="ticker-badge">عاجل</span> الدرهم المغربي يواصل استقراره أمام اليورو والدولار بدعم من تحويلات المغاربة المقيمين بالخارج</span>
-    <span class="ticker-item"><span class="ticker-badge">جديد</span> نمو قياسي في قطاع "E-commerce" بالمغرب يتجاوز 25% مع بداية الربع الثاني من 2026</span>
-    <span class="ticker-item"><span class="ticker-badge">تقرير</span> بورصة الدار البيضاء تسجل أداءً إيجابياً بفضل انتعاش أسهم قطاعي البنوك والعقار</span>
-    <span class="ticker-item"><span class="ticker-badge">عاجل</span> بنك المغرب يُبقي على سعر الفائدة الرئيسي عند 3% لدعم الاستثمار المحلي واستقرار التضخم</span>
-    <span class="ticker-item"><span class="ticker-badge">تداول</span> ارتفاع ملحوظ في إقبال الشباب المغربي على منصات التداول العالمية وسط وعي مالي متزايد</span>
-    <span class="ticker-item"><span class="ticker-badge">اقتصاد</span> المغرب يوقع اتفاقيات جديدة لتعزيز صادرات الخدمات الرقمية نحو السوق الأفريقية</span>
-
-    <span class="ticker-item"><span class="ticker-badge">عاجل</span> الدرهم المغربي يواصل استقراره أمام اليورو والدولار بدعم من تحويلات المغاربة المقيمين بالخارج</span>
-    <span class="ticker-item"><span class="ticker-badge">جديد</span> نمو قياسي في قطاع "E-commerce" بالمغرب يتجاوز 25% مع بداية الربع الثاني من 2026</span>
-    <span class="ticker-item"><span class="ticker-badge">تقرير</span> بورصة الدار البيضاء تسجل أداءً إيجابياً بفضل انتعاش أسهم قطاعي البنوك والعقار</span>
-    <span class="ticker-item"><span class="ticker-badge">عاجل</span> بنك المغرب يُبقي على سعر الفائدة الرئيسي عند 3% لدعم الاستثمار المحلي واستقرار التضخم</span>
-    <span class="ticker-item"><span class="ticker-badge">تداول</span> ارتفاع ملحوظ في إقبال الشباب المغربي على منصات التداول العالمية وسط وعي مالي متزايد</span>
-    <span class="ticker-item"><span class="ticker-badge">اقتصاد</span> المغرب يوقع اتفاقيات جديدة لتعزيز صادرات الخدمات الرقمية نحو السوق الأفريقية</span>
-  </div>
-</div>
+    <div class="ticker-wrap">
+      <div class="ticker-inner">
+        <span class="ticker-item"><span class="ticker-badge">عاجل</span> الدرهم المغربي يواصل استقراره أمام اليورو والدولار بدعم من تحويلات المغاربة المقيمين بالخارج</span>
+        <span class="ticker-item"><span class="ticker-badge">جديد</span> نمو قياسي في قطاع "E-commerce" بالمغرب يتجاوز 25% مع بداية الربع الثاني من 2026</span>
+        <span class="ticker-item"><span class="ticker-badge">تقرير</span> بورصة الدار البيضاء تسجل أداءً إيجابياً بفضل انتعاش أسهم قطاعي البنوك والعقار</span>
+        <span class="ticker-item"><span class="ticker-badge">عاجل</span> بنك المغرب يُبقي على سعر الفائدة الرئيسي عند 3% لدعم الاستثمار المحلي واستقرار التضخم</span>
+        <span class="ticker-item"><span class="ticker-badge">تداول</span> ارتفاع ملحوظ في إقبال الشباب المغربي على منصات التداول العالمية وسط وعي مالي متزايد</span>
+        <span class="ticker-item"><span class="ticker-badge">اقتصاد</span> المغرب يوقع اتفاقيات جديدة لتعزيز صادرات الخدمات الرقمية نحو السوق الأفريقية</span>
+        <span class="ticker-item"><span class="ticker-badge">عاجل</span> الدرهم المغربي يواصل استقراره أمام اليورو والدولار بدعم من تحويلات المغاربة المقيمين بالخارج</span>
+        <span class="ticker-item"><span class="ticker-badge">جديد</span> نمو قياسي في قطاع "E-commerce" بالمغرب يتجاوز 25% مع بداية الربع الثاني من 2026</span>
+        <span class="ticker-item"><span class="ticker-badge">تقرير</span> بورصة الدار البيضاء تسجل أداءً إيجابياً بفضل انتعاش أسهم قطاعي البنوك والعقار</span>
+        <span class="ticker-item"><span class="ticker-badge">عاجل</span> بنك المغرب يُبقي على سعر الفائدة الرئيسي عند 3% لدعم الاستثمار المحلي واستقرار التضخم</span>
+        <span class="ticker-item"><span class="ticker-badge">تداول</span> ارتفاع ملحوظ في إقبال الشباب المغربي على منصات التداول العالمية وسط وعي مالي متزايد</span>
+        <span class="ticker-item"><span class="ticker-badge">اقتصاد</span> المغرب يوقع اتفاقيات جديدة لتعزيز صادرات الخدمات الرقمية نحو السوق الأفريقية</span>
+      </div>
+    </div>
 
     <main>
       <section class="hero">
         <div class="container hero-grid">
           <div class="reveal">
-            <h1>"منصتك لإطلاق مشروع وفق معايير عالمية"</h1>
+            <div class="hero-eyebrow">
+              <span class="eyebrow-dot"></span>
+              <span>منصة الأعمال العربية الأولى</span>
+            </div>
+            <h1>"منصتك لإطلاق مشروع وفق <span class="gradient-text">معايير عالمية</span>"</h1>
             <p>
-"نضع بين يديك عصارة خبراتنا في تطوير الأعمال من خلال برامج تدريبية مكثفة، دراسات سوق معمقة، وكتب استراتيجية صُممت خصيصاً لتكون دليلك العملي لتنتقل بمشروعك من مجرد طموح إلى مشروع مستدام وقادر على المنافسة في السوق الحديثة."    
-            </p><div class="cta-row">
-              <a class="btn btn-primary" href="courses.html">برامج صناعة المشاريع</a>
+              "نضع بين يديك عصارة خبراتنا في تطوير الأعمال من خلال برامج تدريبية مكثفة، دراسات سوق معمقة، وكتب استراتيجية صُممت خصيصاً لتكون دليلك العملي لتنتقل بمشروعك من مجرد طموح إلى مشروع مستدام وقادر على المنافسة في السوق الحديثة."
+            </p>
+            <div class="cta-row">
+              <a class="btn btn-primary btn-glow" href="courses.html">برامج صناعة المشاريع</a>
               <a class="btn btn-secondary" href="blog.html">أكاديمية الأعمال</a>
             </div>
           </div>
@@ -68,11 +82,11 @@
             <h3>تعلم عبر منصتنا في أي وقت ومن أي مكان</h3>
             <div class="stats">
               <div class="stat">
-                <strong>13</strong>
+                <strong class="count-up" data-target="13">0</strong>
                 برنامج
               </div>
               <div class="stat">
-                <strong>76</strong>
+                <strong class="count-up" data-target="76">0</strong>
                 الدرس
               </div>
               <div class="stat">
@@ -85,6 +99,58 @@
         </div>
       </section>
 
+      <!-- ══ Text Slider / Testimonial Carousel ══ -->
+      <section class="slider-section" aria-label="أبرز التخصصات">
+        <div class="container">
+          <div class="slider-track-wrap">
+            <div class="slider-track">
+              <span class="slider-pill">📈 ريادة الأعمال</span>
+              <span class="slider-pill">💹 التداول والاستثمار</span>
+              <span class="slider-pill">🛒 التجارة الإلكترونية</span>
+              <span class="slider-pill">📊 التسويق الرقمي</span>
+              <span class="slider-pill">💡 الابتكار والتقنية</span>
+              <span class="slider-pill">🧠 عقلية النجاح</span>
+              <span class="slider-pill">🌍 الأسواق العالمية</span>
+              <span class="slider-pill">📚 المكتبة الرقمية</span>
+              <!-- duplicate for seamless loop -->
+              <span class="slider-pill">📈 ريادة الأعمال</span>
+              <span class="slider-pill">💹 التداول والاستثمار</span>
+              <span class="slider-pill">🛒 التجارة الإلكترونية</span>
+              <span class="slider-pill">📊 التسويق الرقمي</span>
+              <span class="slider-pill">💡 الابتكار والتقنية</span>
+              <span class="slider-pill">🧠 عقلية النجاح</span>
+              <span class="slider-pill">🌍 الأسواق العالمية</span>
+              <span class="slider-pill">📚 المكتبة الرقمية</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ Quote Slider ══ -->
+      <section class="quote-slider-section reveal">
+        <div class="container">
+          <div class="quote-slider" id="quoteSlider">
+            <div class="quote-slide active">
+              <blockquote>"المشاريع الناجحة لا تُبنى بالحظ، بل بالمعرفة الصحيحة والتنفيذ الذكي."</blockquote>
+              <cite>— الأستاد عبدالرحيم</cite>
+            </div>
+            <div class="quote-slide">
+              <blockquote>"الفرق بين من ينجح ومن يفشل ليس في الإمكانات، بل في الطريق التي تأخد."</blockquote>
+              <cite>— خبراء المنصة</cite>
+            </div>
+            <div class="quote-slide">
+              <blockquote>"استثمارك في معرفتك هو العائد الوحيد الذي لا يخسر أبداً."</blockquote>
+              <cite>— الأستاد عبدالرحيم</cite>
+            </div>
+          </div>
+          <div class="quote-dots" id="quoteDots">
+            <button class="qdot active" data-idx="0"></button>
+            <button class="qdot" data-idx="1"></button>
+            <button class="qdot" data-idx="2"></button>
+          </div>
+        </div>
+      </section>
+
       <section class="section" id="courses">
         <div class="container">
           <div class="section-title reveal">
@@ -92,7 +158,7 @@
             <span class="muted">3 برامج تعليمية كاملة</span>
           </div>
           <div class="course-grid">
-            <article class="course-card glass-card reveal">
+            <article class="course-card glass-card reveal" style="--delay:0ms">
               <div class="course-card__media">
                 <img src="assets/img/courses/course-2.svg" alt="" width="72" height="72" loading="lazy" />
               </div>
@@ -103,7 +169,7 @@
                 <a class="btn btn-primary" href="docs/doc-a.html">عرض</a>
               </div>
             </article>
-            <article class="course-card glass-card reveal">
+            <article class="course-card glass-card reveal" style="--delay:120ms">
               <div class="course-card__media">
                 <img src="assets/img/courses/course-2.svg" alt="" width="72" height="72" loading="lazy" />
               </div>
@@ -114,7 +180,7 @@
                 <a class="btn btn-primary" href="docs/doc-b.html">عرض</a>
               </div>
             </article>
-            <article class="course-card glass-card reveal">
+            <article class="course-card glass-card reveal" style="--delay:240ms">
               <div class="course-card__media">
                 <img src="assets/img/courses/course-2.svg" alt="" width="72" height="72" loading="lazy" />
               </div>
@@ -125,17 +191,30 @@
                 <a class="btn btn-primary" href="docs/doc-c.html">عرض</a>
               </div>
             </article>
-            </div>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="container">
-        <span>© 2026 ArabicBusiness</span>
-        <span>كورسات رقمية بكفاءة عالية</span>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a class="footer-logo" href="index.html">Arabic<span>Business</span></a>
+          <p class="footer-tagline">منصتك لإطلاق مشاريع وفق معايير عالمية</p>
+        </div>
+        <nav class="footer-nav" aria-label="روابط التذييل">
+          <a href="courses.html">برامجنا</a>
+          <a href="e-library.html">المكتبة</a>
+          <a href="blog.html">الأكاديمية</a>
+          <a href="news.html">الأخبار</a>
+          <a href="contact.html">تواصل</a>
+        </nav>
+        <div class="footer-copy">
+          <span>© 2026 ArabicBusiness — جميع الحقوق محفوظة</span>
+        </div>
       </div>
     </footer>
+
     <script src="assets/js/script.js"></script>
   </body>
 </html>
