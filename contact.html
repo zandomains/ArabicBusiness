@@ -46,9 +46,9 @@
                 </p>
 
                 <div class="profile-highlights">
-                  <span>صناعة الأعمال</span>
-                  <span>تطوير المشاريع</span>
-                  <span>التسويق الرقمي</span>
+                  <span>أعمال</span>
+                  <span>استثمار</span>
+                  <span>تجارة</span>
                 </div>
              </div>
             </article>
@@ -118,7 +118,7 @@
         <div class="container">
           <div class="section-title reveal">
             <h2>اتصل بنا</h2>
-            <span class="muted">سنرد عليك في أقرب وقت.</span>
+            <span class="muted">نرحب بجميع طلبات الاستشارة</span>
           </div>
 
           <div class="contact-form glass-card reveal">
@@ -148,40 +148,51 @@
               </div>
             </div>
 
-            <form action="mailto:steps.studio.info@gmail.com" method="post" enctype="text/plain" class="contact-form__body">
-              <div class="form-grid">
-                <label class="field">
-                  <span>الاسم الكامل</span>
-                  <input type="text" name="name" placeholder="اكتب اسمك الكامل" required />
-                </label>
-                <label class="field">
-                  <span>البريد الإلكتروني</span>
-                  <input type="email" name="email" placeholder="name@example.com" required />
-                </label>
-                <label class="field">
-                  <span>نوع الطلب</span>
-                  <input type="text" name="request_type" placeholder="استشارة، تعاون، سؤال عام..." />
-                </label>
-                <label class="field">
-                  <span>الجهة أو المشروع</span>
-                  <input type="text" name="company" placeholder="اسم الشركة أو المشروع" />
-                </label>
-                <label class="field field--full">
-                  <span>الموضوع</span>
-                  <input type="text" name="subject" placeholder="عنوان الرسالة" required />
-                </label>
-                <label class="field field--full">
-                  <span>الرسالة</span>
-                  <textarea name="message" rows="6" placeholder="اكتب رسالتك هنا بشكل واضح ومختصر..." required></textarea>
-                </label>
-              </div>
+<form id="contactForm" class="contact-form__body">
+  <div class="form-grid">
+    
+    <!-- الاسم الكامل -->
+    <label class="field">
+      <span>الاسم الكامل</span>
+      <input type="text" id="sender_name" name="name" placeholder="اكتب اسمك الكامل" required />
+    </label>
 
-              <div class="contact-actions">
-                <button class="btn btn-primary" type="submit">إرسال الرسالة</button>
-                <a class="btn btn-secondary" href="mailto:steps.studio.info@gmail.com">فتح البريد مباشرة</a>
-              </div>
+    <!-- البريد الإلكتروني -->
+    <label class="field">
+      <span>البريد الإلكتروني</span>
+      <input type="email" id="sender_email" name="email" placeholder="name@example.com" required />
+    </label>
 
-            </form>
+    <!-- نوع الطلب -->
+    <label class="field">
+      <span>نوع الطلب</span>
+      <input type="text" id="request_type" name="request_type" placeholder="استشارة، تعاون، سؤال عام..." />
+    </label>
+
+    <!-- الجهة أو المشروع -->
+    <label class="field">
+      <span>الجهة أو المشروع</span>
+      <input type="text" id="company" name="company" placeholder="اسم الشركة أو المشروع" />
+    </label>
+
+    <!-- الموضوع -->
+    <label class="field field--full">
+      <span>الموضوع</span>
+      <input type="text" id="subject" name="subject" placeholder="عنوان الرسالة" required />
+    </label>
+
+    <!-- الرسالة -->
+    <label class="field field--full">
+      <span>الرسالة</span>
+      <textarea id="message" name="message" rows="6" placeholder="اكتب رسالتك هنا بشكل واضح ومختصر..." required></textarea>
+    </label>
+    
+  </div>
+
+  <div class="contact-actions">
+    <button class="btn btn-primary" type="submit">إرسال الرسالة</button>
+  </div>
+</form>
           </div>
         </div>
       </section>

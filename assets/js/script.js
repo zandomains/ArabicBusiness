@@ -174,3 +174,35 @@ if (navToggle && siteHeader) {
     glow.style.top = e.clientY + "px";
   });
 })();
+
+/* 7. Contact Form Handling */
+(function initContactForm() {
+    const contactForm = document.getElementById('contactForm');
+    if (!contactForm) return;
+
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // سحب البيانات من الحقول
+        const name = document.getElementById('sender_name').value;
+        const email = document.getElementById('sender_email').value;
+        const type = document.getElementById('request_type').value;
+        const company = document.getElementById('company').value;
+        const subjectLine = document.getElementById('subject').value;
+        const msg = document.getElementById('message').value;
+
+        // تنسيق محتوى الإيميل
+        const mailtoSubject = encodeURIComponent(`ArabicBusiness: ${subjectLine}`);
+        const mailtoBody = encodeURIComponent(
+            `رسالة جديدة من الموقع:\n\n` +
+            `الاسم: ${name}\n` +
+            `البريد الإلكتروني: ${email}\n` +
+            `نوع الطلب: ${type}\n` +
+            `المشروع/الشركة: ${company}\n\n` +
+            `نص الرسالة:\n${msg}`
+        );
+
+        // فتح تطبيق البريد الإلكتروني
+        window.location.href = `mailto:steps.studio.info@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+    });
+})();

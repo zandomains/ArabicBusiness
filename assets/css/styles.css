@@ -1341,7 +1341,7 @@ textarea:focus {
 
 @keyframes pillScroll {
   0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  100% { transform: translateX(50%); }
 }
 
 /* ══════════════════════════════════════════
@@ -1480,3 +1480,4 @@ textarea:focus {
         grid-template-columns: 1fr; /* عمود واحد في الموبايل */
     }
 }
+
