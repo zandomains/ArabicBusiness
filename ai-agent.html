@@ -1,20 +1,12 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <script type="importmap">
-  {
-    "imports": {
-      "@google/generative-ai": "https://esm.run/@google/generative-ai"
-    }
-  }
-</script>
   <meta name="description" content="المساعد الذكي لمنصة ArabicBusiness - رفيقك في ريادة الأعمال والتجارة الإلكترونية.">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ArabicBusiness | المساعد الذكي</title>
   <link rel="icon" href="assets/img/icon-logo.jpg" sizes="48x48">
   <link rel="stylesheet" href="assets/css/styles.css" />
-  <!-- Same fonts as the main site -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -66,20 +58,16 @@
     <section class="ai-hero" id="aiHero">
       <div class="container" style="display:flex;flex-direction:column;align-items:center;">
 
-        <!-- Eyebrow -->
         <div class="hero-eyebrow">
           <span class="eyebrow-dot"></span>
           <span>مساعد الأعمال الذكي — مدعوم بـ Gemini AI</span>
         </div>
 
-        <!-- Title -->
         <h1>اسألني عن <span class="gradient-text">أعمالك وأسواقك</span></h1>
         <p>مساعدك الذكي المتخصص في ريادة الأعمال العربية، الاستثمار، التجارة الإلكترونية والأسواق المالية</p>
 
-        <!-- Search bar -->
         <div class="search-wrap">
           <div class="search-bar" id="searchBar">
-            <!-- Search icon -->
             <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
             </svg>
@@ -101,7 +89,6 @@
 
             <div class="divider"></div>
 
-            <!-- Mic -->
             <button class="mic-btn" aria-label="بحث صوتي">
               <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="url(#micGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <defs>
@@ -119,7 +106,6 @@
           </div>
         </div>
 
-        <!-- Action buttons -->
         <div class="btn-group">
           <button class="btn btn-primary btn-glow" id="askBtn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L8.5 8.5H2L7 13.5L5 21L12 17L19 21L17 13.5L22 8.5H15.5L12 2Z"/></svg>
@@ -128,7 +114,6 @@
           <button class="btn btn-secondary" id="luckyBtn">🎲 اشعر بالحظ</button>
         </div>
 
-        <!-- Suggestion chips -->
         <div class="suggestions" id="suggestions">
           <button class="chip">💹 كيف أبدأ بالتداول؟</button>
           <button class="chip">🛒 أفضل نماذج التجارة الإلكترونية</button>
@@ -138,7 +123,6 @@
           <button class="chip">💎 بناء الحرية المالية</button>
         </div>
 
-        <!-- Stats -->
         <div class="stats-row">
           <div class="stat-chip glass-card">
             <strong>∞</strong>
@@ -157,7 +141,6 @@
       </div>
     </section>
 
-    <!-- Chat area -->
     <div class="container">
       <hr class="chat-divider" id="chatDivider">
       <div id="chat-section" role="log" aria-live="polite"></div>
@@ -184,23 +167,25 @@
     </div>
   </footer>
 
-<script type="module">
-  // 1. مراجع العناصر
-  const input      = document.getElementById('search-input');
-  const searchBar  = document.getElementById('searchBar');
-  const clearBtn   = document.getElementById('clearBtn');
-  const askBtn     = document.getElementById('askBtn');
-  const luckyBtn   = document.getElementById('luckyBtn');
-  const chatSec    = document.getElementById('chat-section');
-  const chatDiv    = document.getElementById('chatDivider');
-  const spinner    = document.getElementById('spinner');
-  const chips      = document.querySelectorAll('.chip');
+<script>
+  // ══ CONFIGURATION — ضع مفتاح Gemini هنا ══
+  const GEMINI_API_KEY = 'AIzaSyD9VDTaOao_71w6eMnp6GY-RwuGYcuHoFU'; // استبدل هذا بمفتاحك الفعلي
+  const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 
-  // 2. حالة التطبيق
-  let messages = []; 
+  // ══ مراجع العناصر ══
+  const input     = document.getElementById('search-input');
+  const clearBtn  = document.getElementById('clearBtn');
+  const askBtn    = document.getElementById('askBtn');
+  const luckyBtn  = document.getElementById('luckyBtn');
+  const chatSec   = document.getElementById('chat-section');
+  const chatDiv   = document.getElementById('chatDivider');
+  const spinner   = document.getElementById('spinner');
+  const chips     = document.querySelectorAll('.chip');
+
+  let messages  = [];
   let isLoading = false;
 
-  // 3. وظيفة الإرسال عبر السيرفر (Vercel API)
+  // ══ الإرسال المباشر إلى Gemini REST API ══
   async function sendMessage(overrideText = null) {
     const query = (overrideText ?? input.value).trim();
     if (!query || isLoading) return;
@@ -210,54 +195,73 @@
     appendMessage('user', query);
 
     input.value = '';
-    if(clearBtn) clearBtn.style.display = 'none';
+    clearBtn.style.display = 'none';
     setLoading(true);
 
     const aiContent = appendMessage('ai', null);
 
+    // بناء تاريخ المحادثة
+    const contents = [
+      ...messages,
+      { role: 'user', parts: [{ text: query }] }
+    ];
+
     try {
-      // تم تحديث المسار إلى /api/chat لضمان التوافق مع إعدادات Vercel الافتراضية
-      const response = await fetch('/api/chat', {
+      const response = await fetch(GEMINI_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          prompt: query,
-          history: messages 
+        body: JSON.stringify({
+          contents,
+          systemInstruction: {
+            parts: [{
+              text: `أنت مساعد أعمال ذكي متخصص في: ريادة الأعمال العربية، التجارة الإلكترونية، الاستثمار، الأسواق المالية، والتسويق الرقمي. 
+                     أجب دائماً باللغة العربية بأسلوب واضح ومفيد ومهني.`
+            }]
+          },
+          generationConfig: {
+            temperature: 0.7,
+            maxOutputTokens: 1024
+          }
         })
       });
 
-      const data = await response.json();
-      
       if (!response.ok) {
-        throw new Error(data.error || `خطأ في الخادم: ${response.status}`);
+        const err = await response.json();
+        throw new Error(err.error?.message || `خطأ ${response.status}`);
       }
 
-      renderAI(aiContent, data.text);
-      
-      // تحديث التاريخ للمحادثة المستمرة
-      messages.push({ role: 'user', parts: [{ text: query }] });
-      messages.push({ role: 'model', parts: [{ text: data.text }] });
+      const data = await response.json();
+      const text = data.candidates?.[0]?.content?.parts?.[0]?.text || 'لم أتمكن من الحصول على رد.';
+
+      renderAI(aiContent, text);
+
+      // حفظ التاريخ
+      messages.push({ role: 'user',  parts: [{ text: query }] });
+      messages.push({ role: 'model', parts: [{ text }] });
 
     } catch (err) {
-      console.error("Fetch Error:", err);
+      console.error('Gemini Error:', err);
       renderAI(aiContent, `⚠️ ${err.message}`);
     } finally {
       setLoading(false);
     }
   }
 
-  // --- 4. ربط الأحداث برمجياً ---
+  // ══ ربط الأحداث ══
   askBtn.addEventListener('click', () => sendMessage());
 
   luckyBtn.addEventListener('click', () => {
-    const prompts = ['كيف أبدأ بالتداول؟', 'أفضل نماذج التجارة الإلكترونية بالمغرب', 'نصيحة للاستثمار العقاري'];
-    const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
-    sendMessage(randomPrompt);
+    const prompts = [
+      'كيف أبدأ بالتداول في البورصة المغربية؟',
+      'أفضل نماذج التجارة الإلكترونية بالمغرب',
+      'نصيحة للاستثمار العقاري في المغرب'
+    ];
+    sendMessage(prompts[Math.floor(Math.random() * prompts.length)]);
   });
 
   chips.forEach(chip => {
     chip.addEventListener('click', () => {
-      const text = chip.textContent.replace(/^[^\s]+\s/, '').trim();
+      const text = chip.textContent.replace(/^[\S]+\s/, '').trim();
       sendMessage(text);
     });
   });
@@ -273,23 +277,25 @@
   });
 
   input.addEventListener('keydown', e => {
-    if (e.key === 'Enter' && !e.shiftKey) { 
-      e.preventDefault(); 
-      sendMessage(); 
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
     }
   });
 
-  // --- وظائف المساعدة ---
+  // ══ وظائف مساعدة ══
   function setLoading(state) {
     isLoading = state;
-    if(spinner) spinner.style.display = state ? 'block' : 'none';
+    spinner.style.display = state ? 'block' : 'none';
     askBtn.disabled = state;
   }
 
   function appendMessage(role, text) {
     const wrap = document.createElement('div');
     wrap.className = `message ${role === 'user' ? 'user-msg' : 'ai-msg'}`;
-    wrap.innerHTML = `<div class="msg-body"><div class="msg-content">${text === null ? 'جاري التفكير...' : formatText(text)}</div></div>`;
+    wrap.innerHTML = `<div class="msg-body"><div class="msg-content">${
+      text === null ? 'جاري التفكير...' : formatText(text)
+    }</div></div>`;
     chatSec.appendChild(wrap);
     wrap.scrollIntoView({ behavior: 'smooth' });
     return wrap.querySelector('.msg-content');
@@ -300,9 +306,10 @@
   }
 
   function formatText(t) {
-    if(!t) return '';
-    // تحويل التنسيق البسيط (Bolding & Line breaks)
-    return t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+    if (!t) return '';
+    return t
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n/g, '<br>');
   }
 </script>
 </body>
