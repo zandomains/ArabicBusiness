@@ -8,14 +8,12 @@ export default async function handler(req, res) {
   try {
     const { prompt, history } = req.body;
 
-    // التأكد من قراءة المفتاح الصحيح الذي أعددناه في Vercel
+    // إجبار المكتبة على استخدام الإصدار المستقر v1 لتجنب خطأ 404
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_KEY);
     
-    // استخدام الاسم المختصر والمستقر للنموذج
-    // هذا الاسم متوافق تماماً مع الإصدار 0.24.1 ويحل مشكلة الـ 404
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-1.5-flash" 
-    });
+      model: "gemini-1.5-flash"
+    }, { apiVersion: 'v1' }); // هذه الإضافة هي المفتاح الحل
 
     const chat = model.startChat({
       history: history || [],
@@ -25,18 +23,14 @@ export default async function handler(req, res) {
       },
     });
 
-    // إضافة التعليمات البرمجية للمساعد هنا لضمان هويته
-    const systemPrompt = "أنت مساعد ذكي لمنصة ArabicBusiness. قدم نصائح حول ريادة الأعمال والتجارة في المغرب العربي بتركيز وإيجاز.";
-    const fullPrompt = `${systemPrompt}\n\nالمستخدم: ${prompt}`;
-
-    const result = await chat.sendMessage(fullPrompt);
+    const result = await chat.sendMessage(prompt);
     const response = await result.response;
     const text = response.text();
 
     res.status(200).json({ text });
     
   } catch (error) {
-    console.error("API Error Detail:", error);
+    console.error("Detailed Error:", error);
     res.status(500).json({ error: "حدث خطأ في الخادم: " + error.message });
   }
 }
