@@ -1,7 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export default async function handler(req, res) {
-  // التأكد من أن الطلب من نوع POST فقط
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -9,17 +8,13 @@ export default async function handler(req, res) {
   try {
     const { prompt, history } = req.body;
 
-    // التحقق من وجود المفتاح في إعدادات Vercel
-    if (!process.env.GEMINI_KEY) {
-      throw new Error("GEMINI_KEY is missing in Environment Variables");
-    }
-
+    // التأكد من قراءة المفتاح الصحيح الذي أعددناه في Vercel
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_KEY);
     
-    // تحديث اسم النموذج لتجنب خطأ 404 وضمان التوافق
+    // استخدام الاسم المختصر والمستقر للنموذج
+    // هذا الاسم متوافق تماماً مع الإصدار 0.24.1 ويحل مشكلة الـ 404
     const model = genAI.getGenerativeModel({ 
-      model: "gemini-1.5-flash-latest", 
-      systemInstruction: "أنت مساعد ذكي متخصص لمنصة ArabicBusiness — منصة متخصصة في ريادة الأعمال للناطقين بالعربية في منطقة MENA والمغرب العربي. تقدم نصائح واضحة ودقيقة وقابلة للتطبيق حول استراتيجيات الأعمال، التجارة الإلكترونية، الاستثمار، التداول، التسويق الرقمي، التمويل الإسلامي، الأسواق المالية، وريادة الأعمال. كن موجزاً لكن شاملاً. رد بنفس لغة المستخدم."
+      model: "gemini-1.5-flash" 
     });
 
     const chat = model.startChat({
@@ -30,20 +25,18 @@ export default async function handler(req, res) {
       },
     });
 
-    const result = await chat.sendMessage(prompt);
+    // إضافة التعليمات البرمجية للمساعد هنا لضمان هويته
+    const systemPrompt = "أنت مساعد ذكي لمنصة ArabicBusiness. قدم نصائح حول ريادة الأعمال والتجارة في المغرب العربي بتركيز وإيجاز.";
+    const fullPrompt = `${systemPrompt}\n\nالمستخدم: ${prompt}`;
+
+    const result = await chat.sendMessage(fullPrompt);
     const response = await result.response;
     const text = response.text();
 
-    // إرجاع الإجابة للواجهة الأمامية
     res.status(200).json({ text });
     
   } catch (error) {
-    console.error("API Error:", error);
-    
-    // إرسال تفاصيل الخطأ للمساعدة في استكشاف الأخطاء وإصلاحها
-    res.status(500).json({ 
-      error: "حدث خطأ في الخادم: " + error.message,
-      suggestion: "تأكد من صحة GEMINI_KEY وعمل Redeploy في Vercel."
-    });
+    console.error("API Error Detail:", error);
+    res.status(500).json({ error: "حدث خطأ في الخادم: " + error.message });
   }
 }
