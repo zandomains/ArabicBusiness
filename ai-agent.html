@@ -197,7 +197,7 @@
   const chips      = document.querySelectorAll('.chip');
 
   // 2. حالة التطبيق
-  let messages = []; // لتخزين تاريخ المحادثة
+  let messages = []; 
   let isLoading = false;
 
   // 3. وظيفة الإرسال عبر السيرفر (Vercel API)
@@ -205,7 +205,6 @@
     const query = (overrideText ?? input.value).trim();
     if (!query || isLoading) return;
 
-    // تهيئة الواجهة
     chatSec.classList.add('visible');
     chatDiv.classList.add('visible');
     appendMessage('user', query);
@@ -217,8 +216,8 @@
     const aiContent = appendMessage('ai', null);
 
     try {
-      // الاتصال بـ API الخاص بك في Vercel - تم تصحيح المسار والصياغة هنا
-      const response = await fetch('/api/chat.js', {
+      // تم تحديث المسار إلى /api/chat لضمان التوافق مع إعدادات Vercel الافتراضية
+      const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -229,23 +228,25 @@
 
       const data = await response.json();
       
-      if (data.error) throw new Error(data.error);
+      if (!response.ok) {
+        throw new Error(data.error || `خطأ في الخادم: ${response.status}`);
+      }
 
-      // عرض النتيجة وتحديث التاريخ
       renderAI(aiContent, data.text);
+      
+      // تحديث التاريخ للمحادثة المستمرة
       messages.push({ role: 'user', parts: [{ text: query }] });
       messages.push({ role: 'model', parts: [{ text: data.text }] });
 
     } catch (err) {
-      console.error(err);
-      renderAI(aiContent, `⚠️ خطأ: ${err.message || 'حدثت مشكلة في الاتصال بالمساعد.'}`);
+      console.error("Fetch Error:", err);
+      renderAI(aiContent, `⚠️ ${err.message}`);
     } finally {
       setLoading(false);
     }
   }
 
   // --- 4. ربط الأحداث برمجياً ---
-
   askBtn.addEventListener('click', () => sendMessage());
 
   luckyBtn.addEventListener('click', () => {
@@ -300,6 +301,7 @@
 
   function formatText(t) {
     if(!t) return '';
+    // تحويل التنسيق البسيط (Bolding & Line breaks)
     return t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
   }
 </script>
