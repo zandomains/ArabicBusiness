@@ -1,27 +1,3 @@
-// ══ Mobile nav toggle ══
-const navToggle = document.getElementById('navToggle');
-const mainNav   = document.getElementById('mainNav');
-const siteHeader = document.querySelector('.site-header');
-
-if (navToggle && mainNav && siteHeader) {
-  navToggle.addEventListener('click', () => {
-    const isOpen = siteHeader.classList.toggle('nav-open');
-    mainNav.classList.toggle('open', isOpen);
-    navToggle.setAttribute('aria-expanded', isOpen);
-    navToggle.textContent = isOpen ? '✕' : '☰';
-  });
-
-  // Close nav when a link is clicked
-  mainNav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      siteHeader.classList.remove('nav-open');
-      mainNav.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', false);
-      navToggle.textContent = '☰';
-    });
-  });
-}
-
 // ══ CONFIGURATION — ضع مفتاح Groq هنا ══
 const GROQ_API_KEY = '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'; // احصل عليه من console.groq.com
 const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';

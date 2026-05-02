@@ -175,7 +175,137 @@ if (navToggle && siteHeader) {
   });
 })();
 
-/* 7. Contact Form Handling */
+/* 7. AI Agent (ai-agent.html only) */
+(function initAIAgent() {
+  const askBtn  = document.getElementById('askBtn');
+  if (!askBtn) return; // not on ai-agent page, bail out
+
+  const GROQ_API_KEY = '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';
+  const GROQ_URL     = 'https://api.groq.com/openai/v1/chat/completions';
+
+  const SYSTEM_PROMPT = `أنت مساعد أعمال ذكي متخصص في: ريادة الأعمال العربية، التجارة الإلكترونية، الاستثمار، الأسواق المالية، والتسويق الرقمي. 
+أجب دائماً باللغة العربية بأسلوب واضح ومفيد ومهني.`;
+
+  const input   = document.getElementById('search-input');
+  const clearBtn = document.getElementById('clearBtn');
+  const chatSec  = document.getElementById('chat-section');
+  const chatDiv  = document.getElementById('chatDivider');
+  const spinner  = document.getElementById('spinner');
+  const chips    = document.querySelectorAll('.chip');
+
+  let messages  = [];
+  let isLoading = false;
+
+  async function sendMessage(overrideText = null) {
+    const query = (overrideText ?? input.value).trim();
+    if (!query || isLoading) return;
+
+    chatSec.classList.add('visible');
+    chatDiv.classList.add('visible');
+    appendMessage('user', query);
+
+    input.value = '';
+    clearBtn.style.display = 'none';
+    setLoading(true);
+
+    const aiContent = appendMessage('ai', null);
+
+    const chatMessages = [
+      { role: 'system', content: SYSTEM_PROMPT },
+      ...messages,
+      { role: 'user', content: query }
+    ];
+
+    try {
+      const response = await fetch(GROQ_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${GROQ_API_KEY}`
+        },
+        body: JSON.stringify({
+          model: 'llama-3.1-8b-instant',
+          messages: chatMessages,
+          max_tokens: 1024,
+          temperature: 0.7
+        })
+      });
+
+      if (!response.ok) {
+        const err = await response.json();
+        throw new Error(err.error?.message || `خطأ ${response.status}`);
+      }
+
+      const data = await response.json();
+      const text = data.choices?.[0]?.message?.content || 'لم أتمكن من الحصول على رد.';
+      renderAI(aiContent, text);
+      messages.push({ role: 'user',      content: query });
+      messages.push({ role: 'assistant', content: text  });
+
+    } catch (err) {
+      console.error('Groq Error:', err);
+      renderAI(aiContent, `⚠️ ${err.message}`);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  askBtn.addEventListener('click', () => sendMessage());
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const text = chip.textContent.replace(/^[\S]+\s/, '').trim();
+      sendMessage(text);
+    });
+  });
+
+  input.addEventListener('input', () => {
+    clearBtn.style.display = input.value.length > 0 ? 'block' : 'none';
+  });
+
+  clearBtn.addEventListener('click', () => {
+    input.value = '';
+    clearBtn.style.display = 'none';
+    input.focus();
+  });
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+
+  function setLoading(state) {
+    isLoading = state;
+    spinner.style.display = state ? 'block' : 'none';
+    askBtn.disabled = state;
+  }
+
+  function appendMessage(role, text) {
+    const wrap = document.createElement('div');
+    wrap.className = `message ${role === 'user' ? 'user-msg' : 'ai-msg'}`;
+    wrap.innerHTML = `<div class="msg-body"><div class="msg-content">${
+      text === null ? 'جاري التفكير...' : formatText(text)
+    }</div></div>`;
+    chatSec.appendChild(wrap);
+    wrap.scrollIntoView({ behavior: 'smooth' });
+    return wrap.querySelector('.msg-content');
+  }
+
+  function renderAI(el, text) {
+    el.innerHTML = formatText(text);
+  }
+
+  function formatText(t) {
+    if (!t) return '';
+    return t
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n/g, '<br>');
+  }
+})();
+
+/* 8. Contact Form Handling */
 (function initContactForm() {
     const contactForm = document.getElementById('contactForm');
     if (!contactForm) return;
