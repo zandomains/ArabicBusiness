@@ -14,9 +14,9 @@ export default async function handler(req, res) {
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_KEY);
 
     // تصحيح الأقواس هنا (قوس واحد للإغلاق وقوس واحد للمجال)
-    const model = genAI.getGenerativeModel({ 
-      model: "gemini-1.5-flash"
-    }, { apiVersion: 'v1' });
+const model = genAI.getGenerativeModel({ 
+  model: "gemini-1.5-flash" 
+}, { apiVersion: 'v1' });
 
     // استخدام GenerateContent للتأكد من الاتصال بنجاح
     const result = await model.generateContent(prompt);
