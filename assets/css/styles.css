@@ -981,7 +981,8 @@ textarea:focus {
   display: flex; /* Changed from inline-block to flex for a seamless row */
   white-space: nowrap;
   width: max-content; /* Critical: allows the inner div to be as long as its content */
-  animation: tickerScroll 40s linear infinite;
+  animation: tickerScroll 80s linear infinite;
+  direction: rtl;
 }
 
 .ticker-inner:hover { 
@@ -1587,7 +1588,7 @@ textarea:focus {
     .ticker-inner {
       display: flex; gap: 48px;
       width: max-content;
-      animation: tickerScroll 38s linear infinite;
+      animation: tickerScroll 80s linear infinite;
       direction: rtl;
     }
     .ticker-inner:hover { animation-play-state: paused; }
