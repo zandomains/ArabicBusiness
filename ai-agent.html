@@ -168,9 +168,13 @@
   </footer>
 
 <script>
-  // ══ CONFIGURATION — ضع مفتاح Gemini هنا ══
-  const GEMINI_API_KEY = 'AIzaSyD9VDTaOao_71w6eMnp6GY-RwuGYcuHoFU'; // استبدل هذا بمفتاحك الفعلي
-  const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+  // ══ CONFIGURATION — ضع مفتاح Groq هنا ══
+  const GROQ_API_KEY = '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'; // احصل عليه من console.groq.com
+  const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
+
+  const SYSTEM_PROMPT = `أنت مساعد أعمال ذكي متخصص في: ريادة الأعمال العربية، التجارة الإلكترونية، الاستثمار، الأسواق المالية، والتسويق الرقمي. 
+أجب دائماً باللغة العربية بأسلوب واضح ومفيد ومهني.`;
+
   // ══ مراجع العناصر ══
   const input     = document.getElementById('search-input');
   const clearBtn  = document.getElementById('clearBtn');
@@ -184,7 +188,7 @@
   let messages  = [];
   let isLoading = false;
 
-  // ══ الإرسال المباشر إلى Gemini REST API ══
+  // ══ الإرسال المباشر إلى Groq API ══
   async function sendMessage(overrideText = null) {
     const query = (overrideText ?? input.value).trim();
     if (!query || isLoading) return;
@@ -200,27 +204,24 @@
     const aiContent = appendMessage('ai', null);
 
     // بناء تاريخ المحادثة
-    const contents = [
+    const chatMessages = [
+      { role: 'system', content: SYSTEM_PROMPT },
       ...messages,
-      { role: 'user', parts: [{ text: query }] }
+      { role: 'user', content: query }
     ];
 
     try {
-      const response = await fetch(GEMINI_URL, {
+      const response = await fetch(GROQ_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${GROQ_API_KEY}`
+        },
         body: JSON.stringify({
-          contents,
-          systemInstruction: {
-            parts: [{
-              text: `أنت مساعد أعمال ذكي متخصص في: ريادة الأعمال العربية، التجارة الإلكترونية، الاستثمار، الأسواق المالية، والتسويق الرقمي. 
-                     أجب دائماً باللغة العربية بأسلوب واضح ومفيد ومهني.`
-            }]
-          },
-          generationConfig: {
-            temperature: 0.7,
-            maxOutputTokens: 1024
-          }
+          model: 'llama3-8b-8192',
+          messages: chatMessages,
+          max_tokens: 1024,
+          temperature: 0.7
         })
       });
 
@@ -230,16 +231,16 @@
       }
 
       const data = await response.json();
-      const text = data.candidates?.[0]?.content?.parts?.[0]?.text || 'لم أتمكن من الحصول على رد.';
+      const text = data.choices?.[0]?.message?.content || 'لم أتمكن من الحصول على رد.';
 
       renderAI(aiContent, text);
 
       // حفظ التاريخ
-      messages.push({ role: 'user',  parts: [{ text: query }] });
-      messages.push({ role: 'model', parts: [{ text }] });
+      messages.push({ role: 'user',      content: query });
+      messages.push({ role: 'assistant', content: text  });
 
     } catch (err) {
-      console.error('Gemini Error:', err);
+      console.error('Groq Error:', err);
       renderAI(aiContent, `⚠️ ${err.message}`);
     } finally {
       setLoading(false);
@@ -311,5 +312,6 @@
       .replace(/\n/g, '<br>');
   }
 </script>
+
 </body>
 </html>
