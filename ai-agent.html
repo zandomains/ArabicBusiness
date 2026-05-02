@@ -217,8 +217,8 @@
     const aiContent = appendMessage('ai', null);
 
     try {
-      // الاتصال بـ API الخاص بك في Vercel
-      const response = await fetch('/api/chat', {
+      // الاتصال بـ API الخاص بك في Vercel - تم تصحيح المسار والصياغة هنا
+      const response = await fetch('/api/chat.js', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
@@ -238,7 +238,7 @@
 
     } catch (err) {
       console.error(err);
-      renderAI(aiContent, `⚠️ خطأ: حدثت مشكلة في الاتصال بالمساعد.`);
+      renderAI(aiContent, `⚠️ خطأ: ${err.message || 'حدثت مشكلة في الاتصال بالمساعد.'}`);
     } finally {
       setLoading(false);
     }
@@ -299,6 +299,7 @@
   }
 
   function formatText(t) {
+    if(!t) return '';
     return t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
   }
 </script>
