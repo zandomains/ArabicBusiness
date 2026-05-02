@@ -1,36 +1,28 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
+  if (req.method !== 'POST') return res.status(405).send('Method Not Allowed');
 
   try {
     const { prompt, history } = req.body;
-
-    // إجبار المكتبة على استخدام الإصدار المستقر v1 لتجنب خطأ 404
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_KEY);
-    
-    const model = genAI.getGenerativeModel({ 
-      model: "gemini-1.5-flash"
-    }, { apiVersion: 'v1' }); // هذه الإضافة هي المفتاح الحل
 
-    const chat = model.startChat({
-      history: history || [],
-      generationConfig: {
-        maxOutputTokens: 1024,
-        temperature: 0.7,
-      },
+    // الحل الجذري: استخدام المعاملات لتجاوز v1beta
+    const model = genAI.getGenerativeModel({ 
+    model: "gemini-1.5-flash"
+    }, { apiVersion: 'v1' });
+      apiVersion: 'v1' // إجبار المتصفح/السيرفر على استخدام المسار المستقر
     });
 
-    const result = await chat.sendMessage(prompt);
+    // استخدام GenerateContent مباشرة بدلاً من StartChat مؤقتاً للتأكد من الاتصال
+    const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
 
     res.status(200).json({ text });
     
   } catch (error) {
-    console.error("Detailed Error:", error);
-    res.status(500).json({ error: "حدث خطأ في الخادم: " + error.message });
+    console.error("API ERROR:", error);
+    res.status(500).json({ error: "خطأ: " + error.message });
   }
 }
