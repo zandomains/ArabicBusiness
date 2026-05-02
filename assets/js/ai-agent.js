@@ -2,8 +2,8 @@
 const GROQ_API_KEY = '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'; // احصل عليه من console.groq.com
 const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
-const SYSTEM_PROMPT = `أنت مساعد أعمال ذكي متخصص في: ريادة الأعمال العربية، التجارة الإلكترونية، الاستثمار، الأسواق المالية، والتسويق الرقمي. 
-أجب دائماً باللغة العربية بأسلوب واضح ومفيد ومهني.`;
+const SYSTEM_PROMPT = `أنت المستشار عدنان من فريق ArabicBusiness متخصص في في مناقشة مواضيع ريادة الأعمال ، التجارة الإلكترونية، الاستثمار في الصناعة، التداول في الأسواق المالية، واحتراف التسويق الرقمي. 
+أجب دائماً باللغة العربية الفصحة و بأسلوب واضح ومفيد ومهني.`;
 
 // ══ مراجع العناصر ══
 const input     = document.getElementById('search-input');
@@ -78,9 +78,9 @@ async function sendMessage(overrideText = null) {
 }
 
 // ══ ربط الأحداث ══
-askBtn.addEventListener('click', () => sendMessage());
+if (askBtn) askBtn.addEventListener('click', () => sendMessage());
 
-luckyBtn.addEventListener('click', () => {
+if (luckyBtn) luckyBtn.addEventListener('click', () => {
   const prompts = [
     'كيف أبدأ بالتداول في البورصة المغربية؟',
     'أفضل نماذج التجارة الإلكترونية بالمغرب',
@@ -117,7 +117,7 @@ input.addEventListener('keydown', e => {
 function setLoading(state) {
   isLoading = state;
   spinner.style.display = state ? 'block' : 'none';
-  askBtn.disabled = state;
+  if (askBtn) askBtn.disabled = state;
 }
 
 function appendMessage(role, text) {

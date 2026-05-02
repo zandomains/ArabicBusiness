@@ -111,7 +111,7 @@ a {
 
 .nav {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 8px;
   padding: 6px;
   border-radius: 999px;
@@ -887,9 +887,10 @@ textarea:focus {
   }
 }
 
-@media (max-width: 680px) {
+/* ── Header & Navigation Responsiveness ── */
+@media (max-width: 1080px) {
   .nav-wrap {
-    min-height: 74px;
+    min-height: 72px;
     position: relative;
   }
 
@@ -901,26 +902,40 @@ textarea:focus {
 
   .nav {
     position: absolute;
-    top: calc(100% + 8px);
+    top: calc(100% + 10px);
     right: 0;
     left: 0;
-    border-radius: 16px;
-    padding: 10px;
-    display: none;
+    border-radius: 20px;
+    padding: 16px;
     flex-direction: column;
     align-items: stretch;
-    background: rgba(13, 20, 35, 0.96);
-    border: 1px solid rgba(109, 141, 255, 0.34);
+    background: rgba(11, 18, 32, 0.98);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(109, 141, 255, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    
+    /* Animation Setup */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
   }
 
   .site-header.nav-open .nav {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
   }
 
   .nav a {
     text-align: center;
+    padding: 12px;
+    border-radius: 12px;
   }
+}
 
+@media (max-width: 680px) {
   .hero {
     padding-top: 46px;
   }
@@ -965,22 +980,21 @@ textarea:focus {
   .profile-stats {
     grid-template-columns: 1fr;
   }
-
 }
+
 /* ── Breaking news ticker ── */
 .ticker-wrap {
   background: linear-gradient(90deg, rgba(109,141,255,0.18), rgba(83,224,194,0.12));
   border-bottom: 1px solid rgba(109,141,255,0.28);
   overflow: hidden;
   padding: 10px 0;
-  /* white-space: nowrap; is moved to ticker-inner for better control */
-  direction: rtl; /* Ensures the flow is correct for Arabic */
+  direction: rtl;
 }
 
 .ticker-inner {
-  display: flex; /* Changed from inline-block to flex for a seamless row */
+  display: flex;
   white-space: nowrap;
-  width: max-content; /* Critical: allows the inner div to be as long as its content */
+  width: max-content;
   animation: tickerScroll 80s linear infinite;
   direction: rtl;
 }
@@ -988,7 +1002,6 @@ textarea:focus {
 .ticker-inner:hover { 
   animation-play-state: paused; 
 }
-
 .ticker-item {
   display: flex;
   align-items: center;
@@ -1550,6 +1563,12 @@ textarea:focus {
 }
 .mic-btn:hover { transform: scale(1.12); }
 
+.mic-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
 /* Spinner */
 .spinner {
   display: none; width: 18px; height: 18px;
@@ -1618,6 +1637,7 @@ textarea:focus {
 
 .msg-content {
   font-size: .97rem; line-height: 1.78; color: var(--text); word-break: break-word;
+  text-align: right;
 }
 .msg-content p { margin-bottom: 10px; }
 .msg-content p:last-child { margin-bottom: 0; }

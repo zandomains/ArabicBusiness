@@ -177,8 +177,8 @@ if (navToggle && siteHeader) {
 
 /* 7. AI Agent (ai-agent.html only) */
 (function initAIAgent() {
-  const askBtn  = document.getElementById('askBtn');
-  if (!askBtn) return; // not on ai-agent page, bail out
+  const input = document.getElementById('search-input');
+  if (!input) return; // not on ai-agent page, bail out
 
   const GROQ_API_KEY = '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';
   const GROQ_URL     = 'https://api.groq.com/openai/v1/chat/completions';
@@ -186,7 +186,7 @@ if (navToggle && siteHeader) {
   const SYSTEM_PROMPT = `أنت مساعد أعمال ذكي متخصص في: ريادة الأعمال العربية، التجارة الإلكترونية، الاستثمار، الأسواق المالية، والتسويق الرقمي. 
 أجب دائماً باللغة العربية بأسلوب واضح ومفيد ومهني.`;
 
-  const input   = document.getElementById('search-input');
+  const askBtn  = document.getElementById('askBtn');
   const clearBtn = document.getElementById('clearBtn');
   const chatSec  = document.getElementById('chat-section');
   const chatDiv  = document.getElementById('chatDivider');
@@ -250,7 +250,7 @@ if (navToggle && siteHeader) {
     }
   }
 
-  askBtn.addEventListener('click', () => sendMessage());
+  if (askBtn) askBtn.addEventListener('click', () => sendMessage());
 
   chips.forEach(chip => {
     chip.addEventListener('click', () => {
@@ -336,4 +336,3 @@ if (navToggle && siteHeader) {
         window.location.href = `mailto:steps.studio.info@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
     });
 })();
-
