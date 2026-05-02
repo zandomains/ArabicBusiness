@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <script type="importmap">
+  {
+    "imports": {
+      "@google/generative-ai": "https://esm.run/@google/generative-ai"
+    }
+  }
+</script>
+  <meta name="description" content="المساعد الذكي لمنصة ArabicBusiness - رفيقك في ريادة الأعمال والتجارة الإلكترونية.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ArabicBusiness | المساعد الذكي</title>
+  <link rel="icon" href="assets/img/icon-logo.jpg" sizes="48x48">
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <!-- Same fonts as the main site -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Animated orbs -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- ══ Header ══════════════════════════════════════════════ -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="logo" href="index.html">Arabic<span>Business</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="فتح القائمة" aria-expanded="false">☰</button>
+      <nav class="nav" id="mainNav">
+        <a href="index.html">الرئيسية</a>
+        <a href="courses.html">برامجنا التعليمية</a>
+        <a href="e-library.html">المكتبة الرقمية</a>
+        <a href="blog.html">أكاديمية الأعمال</a>
+        <a href="news.html">مدونة الأخبار</a>
+        <a class="active" href="ai-agent.html">المساعد الذكي</a>
+        <a href="contact.html">اتصل بنا</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ══ Breaking news ticker ══════════════════════════════ -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-inner">
+      <span class="ticker-item"><span class="ticker-badge">عاجل</span> الدرهم المغربي يواصل استقراره أمام اليورو والدولار</span>
+      <span class="ticker-item"><span class="ticker-badge">جديد</span> نمو قياسي في قطاع E-commerce بالمغرب يتجاوز 25%</span>
+      <span class="ticker-item"><span class="ticker-badge">تقرير</span> بورصة الدار البيضاء تسجل أداءً إيجابياً</span>
+      <span class="ticker-item"><span class="ticker-badge">عاجل</span> بنك المغرب يُبقي على سعر الفائدة عند 3%</span>
+      <span class="ticker-item"><span class="ticker-badge">تداول</span> إقبال الشباب المغربي على منصات التداول يرتفع</span>
+      <span class="ticker-item"><span class="ticker-badge">اقتصاد</span> المغرب يوقع اتفاقيات لتعزيز الصادرات الرقمية</span>
+      <span class="ticker-item"><span class="ticker-badge">عاجل</span> الدرهم المغربي يواصل استقراره أمام اليورو والدولار</span>
+      <span class="ticker-item"><span class="ticker-badge">جديد</span> نمو قياسي في قطاع E-commerce بالمغرب يتجاوز 25%</span>
+      <span class="ticker-item"><span class="ticker-badge">تقرير</span> بورصة الدار البيضاء تسجل أداءً إيجابياً</span>
+      <span class="ticker-item"><span class="ticker-badge">عاجل</span> بنك المغرب يُبقي على سعر الفائدة عند 3%</span>
+    </div>
+  </div>
+
+  <!-- ══ Main ════════════════════════════════════════════════ -->
+  <main>
+    <section class="ai-hero" id="aiHero">
+      <div class="container" style="display:flex;flex-direction:column;align-items:center;">
+
+        <!-- Eyebrow -->
+        <div class="hero-eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span>مساعد الأعمال الذكي — مدعوم بـ Gemini AI</span>
+        </div>
+
+        <!-- Title -->
+        <h1>اسألني عن <span class="gradient-text">أعمالك وأسواقك</span></h1>
+        <p>مساعدك الذكي المتخصص في ريادة الأعمال العربية، الاستثمار، التجارة الإلكترونية والأسواق المالية</p>
+
+        <!-- Search bar -->
+        <div class="search-wrap">
+          <div class="search-bar" id="searchBar">
+            <!-- Search icon -->
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+            </svg>
+
+            <input
+              type="text"
+              id="search-input"
+              placeholder="اسأل عن ريادة الأعمال، الاستثمار، التجارة..."
+              autocomplete="off" spellcheck="false"
+            />
+
+            <div class="spinner" id="spinner"></div>
+
+            <button class="clear-btn" id="clearBtn" aria-label="مسح">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+
+            <div class="divider"></div>
+
+            <!-- Mic -->
+            <button class="mic-btn" aria-label="بحث صوتي">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="url(#micGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <defs>
+                  <linearGradient id="micGrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#6d8dff"/>
+                    <stop offset="100%" stop-color="#53e0c2"/>
+                  </linearGradient>
+                </defs>
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                <line x1="12" y1="19" x2="12" y2="23"/>
+                <line x1="8" y1="23" x2="16" y2="23"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="btn-group">
+          <button class="btn btn-primary btn-glow" id="askBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L8.5 8.5H2L7 13.5L5 21L12 17L19 21L17 13.5L22 8.5H15.5L12 2Z"/></svg>
+            اسأل المساعد الذكي
+          </button>
+          <button class="btn btn-secondary" id="luckyBtn">🎲 اشعر بالحظ</button>
+        </div>
+
+        <!-- Suggestion chips -->
+        <div class="suggestions" id="suggestions">
+          <button class="chip">💹 كيف أبدأ بالتداول؟</button>
+          <button class="chip">🛒 أفضل نماذج التجارة الإلكترونية</button>
+          <button class="chip">📊 استراتيجيات التسويق الرقمي</button>
+          <button class="chip">💡 كيف أجد مستثمرين؟</button>
+          <button class="chip">🌍 الدخول للسوق الأمريكي</button>
+          <button class="chip">💎 بناء الحرية المالية</button>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-row">
+          <div class="stat-chip glass-card">
+            <strong>∞</strong>
+            <span>أسئلة بلا حدود</span>
+          </div>
+          <div class="stat-chip glass-card">
+            <strong>13+</strong>
+            <span>مجال تخصصي</span>
+          </div>
+          <div class="stat-chip glass-card">
+            <strong>24/7</strong>
+            <span>متاح دائماً</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Chat area -->
+    <div class="container">
+      <hr class="chat-divider" id="chatDivider">
+      <div id="chat-section" role="log" aria-live="polite"></div>
+    </div>
+  </main>
+
+  <!-- ══ Footer ══════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="footer-logo" href="index.html">Arabic<span>Business</span></a>
+        <p class="footer-tagline">منصتك لإطلاق مشاريع وفق معايير عالمية</p>
+      </div>
+      <nav class="footer-nav" aria-label="روابط التذييل">
+        <a href="courses.html">برامجنا</a>
+        <a href="e-library.html">المكتبة</a>
+        <a href="blog.html">الأكاديمية</a>
+        <a href="news.html">الأخبار</a>
+        <a href="contact.html">تواصل</a>
+      </nav>
+      <div class="footer-copy">
+        <span>© 2026 ArabicBusiness — جميع الحقوق محفوظة</span>
+      </div>
+    </div>
+  </footer>
+
+<script type="module">
+  // 1. مراجع العناصر
+  const input      = document.getElementById('search-input');
+  const searchBar  = document.getElementById('searchBar');
+  const clearBtn   = document.getElementById('clearBtn');
+  const askBtn     = document.getElementById('askBtn');
+  const luckyBtn   = document.getElementById('luckyBtn');
+  const chatSec    = document.getElementById('chat-section');
+  const chatDiv    = document.getElementById('chatDivider');
+  const spinner    = document.getElementById('spinner');
+  const chips      = document.querySelectorAll('.chip');
+
+  // 2. حالة التطبيق
+  let messages = []; // لتخزين تاريخ المحادثة
+  let isLoading = false;
+
+  // 3. وظيفة الإرسال عبر السيرفر (Vercel API)
+  async function sendMessage(overrideText = null) {
+    const query = (overrideText ?? input.value).trim();
+    if (!query || isLoading) return;
+
+    // تهيئة الواجهة
+    chatSec.classList.add('visible');
+    chatDiv.classList.add('visible');
+    appendMessage('user', query);
+
+    input.value = '';
+    if(clearBtn) clearBtn.style.display = 'none';
+    setLoading(true);
+
+    const aiContent = appendMessage('ai', null);
+
+    try {
+      // الاتصال بـ API الخاص بك في Vercel
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          prompt: query,
+          history: messages 
+        })
+      });
+
+      const data = await response.json();
+      
+      if (data.error) throw new Error(data.error);
+
+      // عرض النتيجة وتحديث التاريخ
+      renderAI(aiContent, data.text);
+      messages.push({ role: 'user', parts: [{ text: query }] });
+      messages.push({ role: 'model', parts: [{ text: data.text }] });
+
+    } catch (err) {
+      console.error(err);
+      renderAI(aiContent, `⚠️ خطأ: حدثت مشكلة في الاتصال بالمساعد.`);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  // --- 4. ربط الأحداث برمجياً ---
+
+  askBtn.addEventListener('click', () => sendMessage());
+
+  luckyBtn.addEventListener('click', () => {
+    const prompts = ['كيف أبدأ بالتداول؟', 'أفضل نماذج التجارة الإلكترونية بالمغرب', 'نصيحة للاستثمار العقاري'];
+    const randomPrompt = prompts[Math.floor(Math.random() * prompts.length)];
+    sendMessage(randomPrompt);
+  });
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const text = chip.textContent.replace(/^[^\s]+\s/, '').trim();
+      sendMessage(text);
+    });
+  });
+
+  input.addEventListener('input', () => {
+    clearBtn.style.display = input.value.length > 0 ? 'block' : 'none';
+  });
+
+  clearBtn.addEventListener('click', () => {
+    input.value = '';
+    clearBtn.style.display = 'none';
+    input.focus();
+  });
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) { 
+      e.preventDefault(); 
+      sendMessage(); 
+    }
+  });
+
+  // --- وظائف المساعدة ---
+  function setLoading(state) {
+    isLoading = state;
+    if(spinner) spinner.style.display = state ? 'block' : 'none';
+    askBtn.disabled = state;
+  }
+
+  function appendMessage(role, text) {
+    const wrap = document.createElement('div');
+    wrap.className = `message ${role === 'user' ? 'user-msg' : 'ai-msg'}`;
+    wrap.innerHTML = `<div class="msg-body"><div class="msg-content">${text === null ? 'جاري التفكير...' : formatText(text)}</div></div>`;
+    chatSec.appendChild(wrap);
+    wrap.scrollIntoView({ behavior: 'smooth' });
+    return wrap.querySelector('.msg-content');
+  }
+
+  function renderAI(el, text) {
+    el.innerHTML = formatText(text);
+  }
+
+  function formatText(t) {
+    return t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+  }
+</script>
+</body>
+</html>

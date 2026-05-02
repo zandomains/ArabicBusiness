@@ -206,3 +206,4 @@ if (navToggle && siteHeader) {
         window.location.href = `mailto:steps.studio.info@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
     });
 })();
+
