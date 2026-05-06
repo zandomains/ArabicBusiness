@@ -175,7 +175,23 @@ if (navToggle && siteHeader) {
   });
 })();
 
-/* 7. AI Agent (ai-agent.html only) */
+/* 7. Only one audio player at a time */
+(function initExclusiveAudio() {
+  const players = document.querySelectorAll('audio.audio-embed, audio');
+  if (!players.length) return;
+
+  players.forEach((player) => {
+    player.addEventListener("play", () => {
+      players.forEach((other) => {
+        if (other !== player && !other.paused) {
+          other.pause();
+        }
+      });
+    });
+  });
+})();
+
+/* 8. AI Agent (ai-agent.html only) */
 (function initAIAgent() {
   const input = document.getElementById('search-input');
   if (!input) return; // not on ai-agent page, bail out
