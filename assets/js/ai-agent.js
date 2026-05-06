@@ -1,5 +1,5 @@
 // ══ CONFIGURATION — ضع مفتاح Groq هنا ══
-const GROQ_API_KEY = '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'; // احصل عليه من console.groq.com
+const GROQ_API_KEY = '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'; // احصل عليه من console.groq.com
 const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
 const SYSTEM_PROMPT = `أنت المستشار عدنان من فريق ArabicBusiness متخصص في في مناقشة مواضيع ريادة الأعمال ، التجارة الإلكترونية، الاستثمار في الصناعة، التداول في الأسواق المالية، واحتراف التسويق الرقمي. 
