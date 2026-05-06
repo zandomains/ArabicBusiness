@@ -290,6 +290,88 @@ a {
   margin-top: auto;
 }
 
+#audio-previews .course-card__body {
+  gap: 12px;
+}
+
+#audio-previews .course-card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+    var(--card);
+}
+
+#audio-previews .audio-card-head {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 14px;
+  align-items: center;
+}
+
+#audio-previews .audio-card-icon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(83, 224, 194, 0.35), transparent 48%),
+    linear-gradient(135deg, rgba(109, 141, 255, 0.28), rgba(255, 126, 219, 0.18));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  font-size: 1.45rem;
+}
+
+#audio-previews .audio-card-copy {
+  min-width: 0;
+}
+
+#audio-previews .course-card h3 {
+  margin-bottom: 4px;
+}
+
+#audio-previews .audio-card-meta {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+#audio-previews .audio-player-shell {
+  position: relative;
+  margin-top: auto;
+  padding: 10px;
+  border: 1px solid rgba(109, 141, 255, 0.24);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top right, rgba(83, 224, 194, 0.12), transparent 42%),
+    linear-gradient(135deg, rgba(109, 141, 255, 0.14), rgba(255, 255, 255, 0.03));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 12px 28px rgba(3, 8, 18, 0.3);
+}
+
+#audio-previews .audio-embed {
+  display: block;
+  width: 100%;
+  height: 52px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(8, 12, 22, 0.18);
+  accent-color: var(--brand-2);
+}
+
+#audio-previews audio.audio-embed {
+  filter: saturate(1.05);
+}
+
+#audio-previews audio.audio-embed::-webkit-media-controls-panel {
+  background: linear-gradient(135deg, rgba(11, 18, 32, 0.96), rgba(18, 27, 46, 0.92));
+}
+
+#audio-previews audio.audio-embed::-webkit-media-controls-current-time-display,
+#audio-previews audio.audio-embed::-webkit-media-controls-time-remaining-display {
+  color: var(--text);
+}
+
 .blog-card {
   padding: 0;
   overflow: hidden;
