@@ -65,17 +65,12 @@ const VIDEOS = [
 let currentId = VIDEOS[0].id;
 let liked = new Set(JSON.parse(localStorage.getItem('vp_liked') || '[]'));
 let saved = new Set(JSON.parse(localStorage.getItem('vp_saved') || '[]'));
-let progTimer = null;
 
 /* ════════════════════════════════════════
    3. DOM REFERENCES (Safety Cached)
    ════════════════════════════════════════ */
 const ui = {
   iframe:    document.getElementById('mainVideoIframe'),
-  overlay:   document.getElementById('loadingOverlay'),
-  fill:      document.getElementById('progressFill'),
-  thumb:     document.getElementById('progressThumb'),
-  track:     document.getElementById('progressTrack'),
   title:     document.getElementById('videoTitle'),
   desc:      document.getElementById('videoDesc'),
   cat:       document.getElementById('videoCategory'),
@@ -125,21 +120,6 @@ function updateMeta(v) {
   }
 }
 
-function setProgress(p) {
-  if (!ui.fill) return;
-  ui.fill.style.width = p + '%';
-  if (ui.thumb) ui.thumb.style.setProperty('--progress', p + '%');
-}
-
-function startLoadingAnim() {
-  let val = 0;
-  clearInterval(progTimer);
-  progTimer = setInterval(() => {
-    val = Math.min(90, val + (val < 50 ? 2 : 0.5));
-    setProgress(val);
-  }, 100);
-}
-
 function showToast(msg) {
   if (!ui.toast) return;
   ui.toast.textContent = msg;
@@ -159,23 +139,12 @@ function updateActionsUI() {
 document.addEventListener('DOMContentLoaded', () => {
   updateMeta(VIDEOS[0]);
   updateActionsUI();
-  startLoadingAnim();
 
   // Mobile Nav
   if (ui.navToggle && ui.header) {
     ui.navToggle.onclick = () => {
       const open = ui.header.classList.toggle('nav-open');
       ui.navToggle.textContent = open ? '✕' : '☰';
-    };
-  }
-
-  // Iframe Loaded
-  if (ui.iframe) {
-    ui.iframe.onload = () => {
-      if (ui.overlay) ui.overlay.classList.add('hidden');
-      clearInterval(progTimer);
-      setProgress(100);
-      setTimeout(() => setProgress(0), 600);
     };
   }
 
