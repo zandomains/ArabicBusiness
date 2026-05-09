@@ -34,13 +34,13 @@ const VIDEOS = [
     category:'business', 
     catLabel:'التسويق الرقمي', 
     instructor:'الأستاذ نبيل يوسف', 
-    initial:'ع', 
+    initial:'NY', 
     dur:'15:05 دقيقة', 
     views:'345', 
     date:'BusinessTube', 
     badge:'جديد', 
-    tags:['ريادة الأعمال','بناء المشاريع','التخطيط الاستراتيجي'], 
-    emoji:'🚀', 
+    tags:['ريادة الأعمال','التسويق الرقمي','التخطيط الاستراتيجي'], 
+    emoji:'', 
     grad:'linear-gradient(135deg,#1a2a4a,#0d1a30)' 
   },
 
