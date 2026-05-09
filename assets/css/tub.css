@@ -294,7 +294,7 @@ button { cursor: pointer; }
   .vp-rec-thumb { width: 100%; }
 }
 @media (max-width: 560px) {
-  .vp-frame-inner { --vp-embed-scale: 1.46; --vp-embed-nudge-y: 0%; }
+  .vp-frame-inner { --vp-embed-scale: 1.65; --vp-embed-nudge-y: 0%; }
   .vp-rec-list { grid-template-columns: 1fr; }
   .vp-rec-card { grid-template-columns: 90px 1fr; }
   .vp-meta {
