@@ -59,7 +59,7 @@ const VIDEOS = [
     tags:['ريادة الأعمال','التسويق الرقمي','التخطيط الاستراتيجي'], 
     emoji:'', 
     grad:'linear-gradient(135deg,#1a2a4a,#0d1a30)' 
-  },
+ },
 
 ];
 
