@@ -116,7 +116,7 @@ button { cursor: pointer; }
   aspect-ratio: 16/9;
   width: 100%;
   overflow: hidden;
-  --vp-embed-scale:   1.38;
+  --vp-embed-scale:   1.0;
   --vp-embed-nudge-y: 0%;
 }
 .vp-frame-inner iframe {
@@ -128,6 +128,23 @@ button { cursor: pointer; }
   border: none;
   transform: translate(-50%, calc(-50% + var(--vp-embed-nudge-y)));
   transform-origin: center center;
+}
+/* Mask overlay — covers the bottom controls bar without scaling the video */
+.vp-frame-inner::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: transparent;
+  z-index: 3;
+  pointer-events: none;
+}
+@media (max-width: 560px) {
+  .vp-frame-inner::after {
+    height: 52px;
+  }
 }
 
 /* Loading overlay */
@@ -285,7 +302,7 @@ button { cursor: pointer; }
     border-radius: 18px;
   }
   .vp-frame-wrap { border-radius: 0; border-left: 0; border-right: 0; }
-  .vp-frame-inner { --vp-embed-scale: 1.42; --vp-embed-nudge-y: 0%; }
+  .vp-frame-inner { --vp-embed-scale: 1.0; --vp-embed-nudge-y: 0%; }
   .vp-meta,
   .vp-breadcrumb,
   .vp-sidebar { width: min(1140px, 92%); margin-left: auto; margin-right: auto; }
@@ -294,7 +311,7 @@ button { cursor: pointer; }
   .vp-rec-thumb { width: 100%; }
 }
 @media (max-width: 560px) {
-  .vp-frame-inner { --vp-embed-scale: 1.65; --vp-embed-nudge-y: 0%; }
+  .vp-frame-inner { --vp-embed-scale: 1.0; --vp-embed-nudge-y: 0%; }
   .vp-rec-list { grid-template-columns: 1fr; }
   .vp-rec-card { grid-template-columns: 90px 1fr; }
   .vp-meta {
