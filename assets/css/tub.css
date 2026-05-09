@@ -116,8 +116,8 @@ button { cursor: pointer; }
   aspect-ratio: 16/9;
   width: 100%;
   overflow: hidden;
-  --vp-embed-scale:   1.0;
-  --vp-embed-nudge-y: 0%;
+  --vp-embed-scale:   1.18;   /* hides Google Drive top toolbar */
+  --vp-embed-nudge-y: 4%;     /* shifts iframe down to keep video centred */
 }
 .vp-frame-inner iframe {
   position: absolute;
@@ -129,22 +129,33 @@ button { cursor: pointer; }
   transform: translate(-50%, calc(-50% + var(--vp-embed-nudge-y)));
   transform-origin: center center;
 }
-/* Mask overlay — covers the bottom controls bar without scaling the video */
+
+/* Bottom bar mask — solid colour matching the frame background,
+   sits on top of the iframe so the controls are never visible     */
 .vp-frame-inner::after {
   content: "";
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 48px;
-  background: transparent;
-  z-index: 3;
-  pointer-events: none;
+  bottom: 0; left: 0; right: 0;
+  height: 56px;                /* desktop controls bar height      */
+  background: transparent;         /* invisible mask */
+  z-index: 6;                  /* above loading overlay (z:4) and JS blocker (z:5) */
+  pointer-events: none;        /* clicks pass through to iframe    */
 }
-@media (max-width: 560px) {
-  .vp-frame-inner::after {
-    height: 36px;
+
+@media (max-width: 820px) {
+  .vp-frame-inner {
+    --vp-embed-scale: 1.22;
+    --vp-embed-nudge-y: 4%;
   }
+  .vp-frame-inner::after { height: 50px; }
+}
+
+@media (max-width: 560px) {
+  .vp-frame-inner {
+    --vp-embed-scale: 1.28;
+    --vp-embed-nudge-y: 4.5%;
+  }
+  .vp-frame-inner::after { height: 44px; }
 }
 
 /* Loading overlay */
@@ -302,7 +313,6 @@ button { cursor: pointer; }
     border-radius: 18px;
   }
   .vp-frame-wrap { border-radius: 0; border-left: 0; border-right: 0; }
-  .vp-frame-inner { --vp-embed-scale: 1.0; --vp-embed-nudge-y: 0%; }
   .vp-meta,
   .vp-breadcrumb,
   .vp-sidebar { width: min(1140px, 92%); margin-left: auto; margin-right: auto; }
@@ -311,7 +321,6 @@ button { cursor: pointer; }
   .vp-rec-thumb { width: 100%; }
 }
 @media (max-width: 560px) {
-  .vp-frame-inner { --vp-embed-scale: 1.0; --vp-embed-nudge-y: 0%; }
   .vp-rec-list { grid-template-columns: 1fr; }
   .vp-rec-card { grid-template-columns: 90px 1fr; }
   .vp-meta {
