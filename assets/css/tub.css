@@ -116,8 +116,8 @@ button { cursor: pointer; }
   aspect-ratio: 16/9;
   width: 100%;
   overflow: hidden;
-  --vp-embed-scale:   1.18;
-  --vp-embed-nudge-y: 3%;
+  --vp-embed-scale:   1.38;
+  --vp-embed-nudge-y: 0%;
 }
 .vp-frame-inner iframe {
   position: absolute;
@@ -285,7 +285,7 @@ button { cursor: pointer; }
     border-radius: 18px;
   }
   .vp-frame-wrap { border-radius: 0; border-left: 0; border-right: 0; }
-  .vp-frame-inner { --vp-embed-scale: 1.22; --vp-embed-nudge-y: 3.5%; }
+  .vp-frame-inner { --vp-embed-scale: 1.42; --vp-embed-nudge-y: 0%; }
   .vp-meta,
   .vp-breadcrumb,
   .vp-sidebar { width: min(1140px, 92%); margin-left: auto; margin-right: auto; }
@@ -294,7 +294,7 @@ button { cursor: pointer; }
   .vp-rec-thumb { width: 100%; }
 }
 @media (max-width: 560px) {
-  .vp-frame-inner { --vp-embed-scale: 1.25; --vp-embed-nudge-y: 4%; }
+  .vp-frame-inner { --vp-embed-scale: 1.46; --vp-embed-nudge-y: 0%; }
   .vp-rec-list { grid-template-columns: 1fr; }
   .vp-rec-card { grid-template-columns: 90px 1fr; }
   .vp-meta {
