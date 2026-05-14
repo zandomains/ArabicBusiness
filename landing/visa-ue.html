@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>بوابتك القانونية للعمل في أوروبا</title>
+    <meta
+      name="description"
+      content="صفحة هبوط عربية تشرح المسار القانوني نحو عقود عمل في أوروبا للمغاربة، من التسجيل إلى التأشيرة، مع تجنب الوسطاء."
+    />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <style>
+      .europe-landing {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .europe-landing::before,
+      .europe-landing::after {
+        content: "";
+        position: absolute;
+        border-radius: 999px;
+        pointer-events: none;
+        filter: blur(14px);
+      }
+
+      .europe-landing::before {
+        width: 460px;
+        height: 460px;
+        top: 60px;
+        right: -160px;
+        background: radial-gradient(circle, rgba(109, 141, 255, 0.22), transparent 68%);
+      }
+
+      .europe-landing::after {
+        width: 320px;
+        height: 320px;
+        left: -120px;
+        bottom: 140px;
+        background: radial-gradient(circle, rgba(83, 224, 194, 0.18), transparent 72%);
+      }
+
+      .europe-shell {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-section {
+        padding: 68px 0 34px;
+      }
+
+      .hero-grid,
+      .steps-grid,
+      .benefits-grid,
+      .countries-row,
+      .proof-row {
+        display: grid;
+      }
+
+      .hero-grid {
+        grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
+        gap: 22px;
+        align-items: stretch;
+      }
+
+      .hero-card,
+      .side-card,
+      .content-card,
+      .final-card {
+        background: linear-gradient(180deg, rgba(18, 27, 46, 0.84), rgba(10, 16, 30, 0.92));
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-card,
+      .side-card,
+      .content-card,
+      .final-card {
+        padding: 28px;
+      }
+
+      .hero-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(109, 141, 255, 0.12);
+        border: 1px solid rgba(109, 141, 255, 0.28);
+        color: #e5ebff;
+        font-size: 0.92rem;
+        margin-bottom: 18px;
+      }
+
+      .hero-card h1 {
+        margin: 0 0 14px;
+        font-size: clamp(2.25rem, 5vw, 4.2rem);
+        line-height: 1.06;
+      }
+
+      .hero-card p,
+      .side-card p,
+      .content-card p,
+      .final-card p,
+      .section-intro {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.9;
+      }
+
+      .hero-lead {
+        margin-bottom: 22px;
+        font-size: 1.04rem;
+      }
+
+      .countries-row {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+        margin-bottom: 22px;
+      }
+
+      .country-pill,
+      .proof-pill {
+        padding: 11px 14px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--muted);
+        text-align: center;
+        font-size: 0.88rem;
+      }
+
+      .benefits-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .benefit-box,
+      .step-box {
+        padding: 18px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .benefit-box strong,
+      .step-box strong,
+      .side-card h2,
+      .section-head h2,
+      .final-card h2 {
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 22px;
+      }
+
+      .hero-actions .btn {
+        min-width: 180px;
+      }
+
+      .proof-row {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .side-card {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        justify-content: space-between;
+      }
+
+      .status-panel {
+        padding: 18px;
+        border-radius: 20px;
+        background: linear-gradient(145deg, rgba(109, 141, 255, 0.14), rgba(83, 224, 194, 0.1));
+        border: 1px solid rgba(109, 141, 255, 0.18);
+      }
+
+      .status-track {
+        position: relative;
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        overflow: hidden;
+        margin: 12px 0 8px;
+      }
+
+      .status-fill {
+        position: absolute;
+        inset: 0;
+        width: 78%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #53e0c2, #6d8dff 55%, #ffd26f);
+        animation: flowBar 5s ease-in-out infinite;
+      }
+
+      .status-meta,
+      .stats-grid,
+      .steps-grid {
+        gap: 12px;
+      }
+
+      .status-meta {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .stat-box {
+        padding: 14px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .stat-box strong {
+        display: block;
+        font-size: 1.45rem;
+        margin-bottom: 6px;
+      }
+
+      .stat-box span {
+        color: var(--muted);
+        font-size: 0.84rem;
+      }
+
+      .landing-section {
+        padding: 12px 0 26px;
+      }
+
+      .section-head {
+        margin-bottom: 18px;
+      }
+
+      .section-head h2 {
+        margin: 0 0 10px;
+        font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+      }
+
+      .steps-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .step-index {
+        width: 42px;
+        height: 42px;
+        display: inline-grid;
+        place-items: center;
+        border-radius: 14px;
+        margin-bottom: 14px;
+        background: linear-gradient(135deg, rgba(109, 141, 255, 0.2), rgba(83, 224, 194, 0.18));
+        border: 1px solid rgba(109, 141, 255, 0.18);
+        font-weight: 800;
+      }
+
+      .content-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        gap: 18px;
+      }
+
+      .final-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .final-card::before {
+        content: "";
+        position: absolute;
+        width: 240px;
+        height: 240px;
+        border-radius: 50%;
+        left: -70px;
+        bottom: -100px;
+        background: radial-gradient(circle, rgba(109, 141, 255, 0.18), transparent 72%);
+      }
+
+      .final-card > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      @keyframes flowBar {
+        0%,
+        100% {
+          width: 78%;
+        }
+        50% {
+          width: 90%;
+        }
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid,
+        .steps-grid,
+        .content-layout,
+        .countries-row {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .hero-section {
+          padding-top: 42px;
+        }
+
+        .hero-card,
+        .side-card,
+        .content-card,
+        .final-card {
+          padding: 20px;
+          border-radius: 20px;
+        }
+
+        .benefits-grid,
+        .proof-row,
+        .status-meta,
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-actions .btn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="logo" href="../index.html">Arabic<span>Business</span></a>
+        <button class="nav-toggle" aria-label="فتح القائمة" aria-expanded="false">☰</button>
+        <nav class="nav">
+          <a href="../index.html">الرئيسية</a>
+          <a href="../courses.html">برامجنا التعليمية</a>
+          <a class="active" href="../e-library.html">المكتبة الرقمية</a>
+          <a href="../blog.html">أكاديمية الأعمال</a>
+          <a href="../news.html">مدونة الأخبار</a>
+          <a href="../contact.html">اتصل بنا</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="europe-landing">
+      <div class="europe-shell">
+        <section class="hero-section">
+          <div class="container hero-grid">
+            <div class="hero-card reveal">
+              <span class="hero-kicker">المسار القانوني للمغاربة نحو أوروبا</span>
+              <h1>بوابتك القانونية نحو مستقبل مهني في أوروبا</h1>
+              <p class="hero-lead">
+                إذا كنت تطمح لبدء حياة مهنية جديدة في قلب أوروبا، فهذه الصفحة صممت لتضع
+                أمامك المسار المباشر والأوضح. عبر اتفاقيات دولية مبرمة مع المملكة
+                المغربية، تفتح لك فرص حقيقية للوصول إلى عقود عمل مخصصة للمغاربة في عدد من
+                أقوى الاقتصادات الأوروبية، ضمن إطار قانوني يحفظ حقوقك ويخدم طموحك المهني.
+              </p>
+
+              <div class="countries-row">
+                <div class="country-pill">فرنسا</div>
+                <div class="country-pill">إيطاليا</div>
+                <div class="country-pill">إسبانيا</div>
+                <div class="country-pill">ألمانيا</div>
+              </div>
+
+              <div class="benefits-grid">
+                <div class="benefit-box">
+                  <strong>فرص مخصصة للمغاربة</strong>
+                  <p>عقود عمل تتماشى مع احتياجات السوق الأوروبي وتراعي المسار القانوني.</p>
+                </div>
+                <div class="benefit-box">
+                  <strong>حقوق أوضح واستقرار أكبر</strong>
+                  <p>الوصول إلى مسار منظم يحميك كمهني يبحث عن الأمان والارتقاء.</p>
+                </div>
+                <div class="benefit-box">
+                  <strong>توجيه عملي من البداية</strong>
+                  <p>من التسجيل وفتح الحساب المهني إلى تجهيز الملف القنصلي النهائي.</p>
+                </div>
+                <div class="benefit-box">
+                  <strong>بديل عن السماسرة</strong>
+                  <p>معرفة دقيقة تقلل الأخطاء وتبعدك عن الاستنزاف المالي والإداري.</p>
+                </div>
+              </div>
+
+              <div class="hero-actions">
+                <a class="btn btn-primary btn-glow" href="#legal-path">ابدأ المسار الآن</a>
+                <a class="btn btn-secondary" href="../contact.html">اطلب التفاصيل</a>
+              </div>
+
+              <div class="proof-row">
+                <div class="proof-pill">مسار قانوني مباشر</div>
+                <div class="proof-pill">تأهيل مهني منظم</div>
+                <div class="proof-pill">تجهيز ملف التأشيرة بثقة</div>
+              </div>
+            </div>
+
+            <aside class="side-card reveal" style="--delay: 120ms">
+              <div>
+                <h2>من التسجيل حتى التأشيرة</h2>
+                <p>
+                  الرحلة لا تبدأ بالعشوائية، بل بخطوات مدروسة: حساب مهني، سيرة ذاتية
+                  بالمعايير الأوروبية، تواصل مباشر عند القبول، ثم إعداد الملف القانوني
+                  لدى القنصلية مع الوثائق الشخصية والعقد المعتمد.
+                </p>
+              </div>
+
+              <div class="status-panel">
+                <strong>جاهزية المسار</strong>
+                <div class="status-track" aria-hidden="true">
+                  <div class="status-fill"></div>
+                </div>
+                <div class="status-meta">
+                  <span>تسجيل مهني</span>
+                  <span style="text-align: center">عقد رسمي</span>
+                  <span style="text-align: left">تأشيرة قانونية</span>
+                </div>
+              </div>
+
+              <div class="stats-grid">
+                <div class="stat-box">
+                  <strong data-count="4">0</strong>
+                  <span>وجهات أوروبية رئيسية</span>
+                </div>
+                <div class="stat-box">
+                  <strong data-count="3">0</strong>
+                  <span>مراحل أساسية في المسار</span>
+                </div>
+                <div class="stat-box">
+                  <strong data-count="1">0</strong>
+                  <span>هدف واضح: عقد عمل قانوني</span>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="landing-section" id="legal-path">
+          <div class="container">
+            <div class="section-head">
+              <h2 class="reveal">خطوات مدروسة.. من التسجيل حتى التأشيرة</h2>
+              <p class="section-intro reveal" style="--delay: 80ms">
+                هذا المسار لا يكتفي بالشرح النظري، بل يركز على ما تحتاجه فعليًا للانتقال
+                من الرغبة إلى التنفيذ: حضور مهني أفضل، ملف أقوى، وإجراءات أوضح.
+              </p>
+            </div>
+
+            <div class="steps-grid">
+              <article class="step-box reveal" style="--delay: 120ms">
+                <div class="step-index">1</div>
+                <strong>فتح حساب مهني</strong>
+                <p>توجيهك إلى التسجيل في المواقع الرسمية بطريقة منظمة ومناسبة للهدف المهني.</p>
+              </article>
+              <article class="step-box reveal" style="--delay: 180ms">
+                <div class="step-index">2</div>
+                <strong>سيرة ذاتية أوروبية</strong>
+                <p>صياغة سيرة ذاتية عالمية متوافقة مع معايير كل بلد على حدة.</p>
+              </article>
+              <article class="step-box reveal" style="--delay: 240ms">
+                <div class="step-index">3</div>
+                <strong>الحصول على عقد العمل</strong>
+                <p>عند قبول طلبك تبدأ مرحلة التواصل المباشر للوصول إلى العقد الرسمي.</p>
+              </article>
+              <article class="step-box reveal" style="--delay: 300ms">
+                <div class="step-index">4</div>
+                <strong>الملف القنصلي</strong>
+                <p>تجهيز الوثائق الشخصية والعقد المعتمد لتقديم طلب التأشيرة بسلاسة أكبر.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="landing-section">
+          <div class="container content-layout">
+            <div class="content-card reveal">
+              <div class="section-head">
+                <h2>استثمر في المعلومة.. واحمِ نفسك من الوسطاء</h2>
+                <p class="section-intro">
+                  ترك المستقبل للصدفة أو للسماسرة قد يكلّفك وقتًا ومالًا وفرصًا حقيقية.
+                  لذلك تم بناء هذا المحتوى ليكون اختصارًا ذكيًا للطريق، وليس مجرد معلومات
+                  عامة مبعثرة.
+                </p>
+              </div>
+
+              <div class="benefits-grid">
+                <div class="benefit-box">
+                  <strong>برنامج تعليمي حصري</strong>
+                  <p>فيديوهات مسجلة بإشراف الأستاذ عبد الرحيم تشرح الطريق بشكل عملي.</p>
+                </div>
+                <div class="benefit-box">
+                  <strong>اختصار شهور من البحث</strong>
+                  <p>الوصول إلى خلاصة الخبرة بدل التشتت بين مصادر غير مكتملة أو متناقضة.</p>
+                </div>
+                <div class="benefit-box">
+                  <strong>تفادي الأخطاء الإدارية</strong>
+                  <p>فهم أفضل للتفاصيل التي قد تربك الملف أو تؤخر المسار.</p>
+                </div>
+                <div class="benefit-box">
+                  <strong>الاستعداد لأول عقد</strong>
+                  <p>الهدف النهائي هو وضعك على الطريق الصحيح نحو توقيع عقد عملك الأول.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="content-card reveal" style="--delay: 120ms">
+              <div class="section-head">
+                <h2>لماذا هذا العرض مختلف؟</h2>
+              </div>
+              <div class="benefits-grid">
+                <div class="benefit-box">
+                  <strong>موجه للمغاربة تحديدًا</strong>
+                  <p>المحتوى مبني على واقع المسارات والفرص القانونية المتاحة لهذه الفئة.</p>
+                </div>
+                <div class="benefit-box">
+                  <strong>عملي لا دعائي</strong>
+                  <p>يركز على ما يجب فعله، لا على وعود فضفاضة أو عبارات عامة.</p>
+                </div>
+                <div class="benefit-box">
+                  <strong>واضح في المراحل</strong>
+                  <p>يمنحك صورة مترابطة من أول خطوة حتى لحظة تقديم ملف التأشيرة.</p>
+                </div>
+                <div class="benefit-box">
+                  <strong>يمنحك استقلالية أكبر</strong>
+                  <p>كلما فهمت الطريق بنفسك، قلت حاجتك للاعتماد على وسطاء مجهولين.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="landing-section">
+          <div class="container">
+            <div class="final-card reveal">
+              <h2>ابنِ مستقبلك الأوروبي على معرفة صحيحة</h2>
+              <p>
+                هذا البرنامج ليس مجرد شرح، بل استثمار بسيط يمنحك القوة المعرفية التي
+                تحتاجها لتتحرك بثقة، وتحمي نفسك من الأخطاء الإدارية الشائعة، وتقترب أكثر
+                من فرصة العمل القانونية التي تبحث عنها في أوروبا.
+              </p>
+              <div class="hero-actions">
+                <a class="btn btn-primary btn-glow" href="../contact.html">أطلب البرنامج الآن</a>
+                <a class="btn btn-secondary" href="../e-library.html">العودة إلى المكتبة الرقمية</a>
+              </div>
+              <div class="proof-row">
+                <div class="proof-pill">خطوات أوضح</div>
+                <div class="proof-pill">حماية من السماسرة</div>
+                <div class="proof-pill">طريق أقرب نحو العقد والتأشيرة</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a class="footer-logo" href="../index.html">Arabic<span>Business</span></a>
+          <p class="footer-tagline">منصتك لإطلاق مشاريع وفق معايير عالمية</p>
+        </div>
+        <nav class="footer-nav" aria-label="روابط التذييل">
+          <a href="../courses.html">برامجنا</a>
+          <a href="../e-library.html">المكتبة</a>
+          <a href="../blog.html">الأكاديمية</a>
+          <a href="../news.html">الأخبار</a>
+          <a href="../contact.html">تواصل</a>
+        </nav>
+        <div class="footer-copy">
+          <span>© 2026 ArabicBusiness — جميع الحقوق محفوظة</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.14 }
+        );
+
+        document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+
+        const counters = document.querySelectorAll("[data-count]");
+        const counterObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+
+              const element = entry.target;
+              const target = Number(element.getAttribute("data-count"));
+              let current = 0;
+              const step = Math.max(1, Math.ceil(target / 30));
+
+              const tick = () => {
+                current = Math.min(target, current + step);
+                element.textContent = current;
+                if (current < target) requestAnimationFrame(tick);
+              };
+
+              tick();
+              counterObserver.unobserve(element);
+            });
+          },
+          { threshold: 0.6 }
+        );
+
+        counters.forEach((counter) => counterObserver.observe(counter));
+      });
+    </script>
+  </body>
+</html>

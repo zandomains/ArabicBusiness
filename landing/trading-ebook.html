@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>دليل التداول الواعي والاستثمار الذكي</title>
+    <meta
+      name="description"
+      content="صفحة هبوط عربية لتعلّم التداول والاستثمار بخطة واضحة وإدارة مخاطر وانضباط نفسي بعيدًا عن العشوائية."
+    />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <style>
+      .trading-landing {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .trading-landing::before,
+      .trading-landing::after {
+        content: "";
+        position: absolute;
+        border-radius: 999px;
+        filter: blur(10px);
+        pointer-events: none;
+      }
+
+      .trading-landing::before {
+        width: 420px;
+        height: 420px;
+        top: 60px;
+        right: -140px;
+        background: radial-gradient(circle, rgba(109, 141, 255, 0.22), transparent 68%);
+      }
+
+      .trading-landing::after {
+        width: 320px;
+        height: 320px;
+        left: -110px;
+        bottom: 140px;
+        background: radial-gradient(circle, rgba(83, 224, 194, 0.18), transparent 70%);
+      }
+
+      .landing-shell {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-panel {
+        padding: 68px 0 34px;
+      }
+
+      .hero-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+        gap: 22px;
+        align-items: stretch;
+      }
+
+      .hero-copy,
+      .hero-side,
+      .content-card,
+      .timeline-card,
+      .final-cta {
+        background: linear-gradient(180deg, rgba(18, 27, 46, 0.82), rgba(10, 16, 30, 0.9));
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+      }
+
+      .hero-copy {
+        padding: 30px;
+      }
+
+      .hero-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(109, 141, 255, 0.12);
+        border: 1px solid rgba(109, 141, 255, 0.32);
+        color: #dfe7ff;
+        font-size: 0.92rem;
+        margin-bottom: 18px;
+      }
+
+      .hero-copy h1 {
+        margin: 0 0 14px;
+        font-size: clamp(2.3rem, 5vw, 4.4rem);
+        line-height: 1.08;
+      }
+
+      .hero-lead {
+        margin: 0 0 22px;
+        color: var(--muted);
+        font-size: 1.04rem;
+        line-height: 1.95;
+      }
+
+      .hero-points {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin: 0 0 22px;
+      }
+
+      .hero-point {
+        padding: 14px 16px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .hero-point strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 1rem;
+      }
+
+      .hero-point span {
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.75;
+      }
+
+      .hero-side {
+        padding: 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        justify-content: space-between;
+      }
+
+      .hero-side h2 {
+        margin: 0;
+        font-size: 1.4rem;
+      }
+
+      .hero-side p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.85;
+      }
+
+      .mindset-meter {
+        padding: 18px;
+        border-radius: 20px;
+        background: linear-gradient(145deg, rgba(109, 141, 255, 0.16), rgba(83, 224, 194, 0.1));
+        border: 1px solid rgba(109, 141, 255, 0.2);
+      }
+
+      .meter-labels,
+      .hero-stats,
+      .cta-meta,
+      .content-grid,
+      .timeline-list,
+      .checklist,
+      .benefits-grid {
+        display: grid;
+      }
+
+      .meter-track {
+        position: relative;
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        margin: 12px 0 8px;
+        overflow: hidden;
+      }
+
+      .meter-fill {
+        position: absolute;
+        inset: 0;
+        width: 68%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #53e0c2, #6d8dff 58%, #ffb866);
+        animation: pulseWidth 5.5s ease-in-out infinite;
+      }
+
+      .meter-labels {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .hero-stat {
+        padding: 14px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .hero-stat strong {
+        display: block;
+        font-size: 1.5rem;
+        margin-bottom: 6px;
+      }
+
+      .hero-stat span {
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 22px;
+      }
+
+      .hero-actions .btn {
+        min-width: 170px;
+      }
+
+      .cta-meta {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      .cta-meta div {
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        font-size: 0.88rem;
+        color: var(--muted);
+      }
+
+      .landing-section {
+        padding: 12px 0 26px;
+      }
+
+      .landing-section h2 {
+        margin: 0 0 10px;
+        font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+      }
+
+      .section-intro {
+        margin: 0 0 20px;
+        color: var(--muted);
+        line-height: 1.9;
+        max-width: 760px;
+      }
+
+      .content-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .content-card {
+        padding: 24px;
+      }
+
+      .content-card h3 {
+        margin: 0 0 10px;
+        font-size: 1.15rem;
+      }
+
+      .content-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.85;
+      }
+
+      .card-index {
+        width: 42px;
+        height: 42px;
+        display: inline-grid;
+        place-items: center;
+        border-radius: 14px;
+        margin-bottom: 16px;
+        background: linear-gradient(135deg, rgba(109, 141, 255, 0.2), rgba(83, 224, 194, 0.16));
+        border: 1px solid rgba(109, 141, 255, 0.22);
+        font-weight: 800;
+      }
+
+      .split-section {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(300px, 0.92fr);
+        gap: 18px;
+        align-items: start;
+      }
+
+      .timeline-card,
+      .final-cta {
+        padding: 26px;
+      }
+
+      .timeline-list,
+      .checklist {
+        gap: 12px;
+      }
+
+      .timeline-item,
+      .check-item {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .timeline-item:last-child,
+      .check-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .timeline-badge,
+      .check-mark {
+        flex: 0 0 38px;
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        background: rgba(109, 141, 255, 0.16);
+        border: 1px solid rgba(109, 141, 255, 0.22);
+        font-weight: 800;
+      }
+
+      .timeline-item strong,
+      .check-item strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .timeline-item p,
+      .check-item p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .benefits-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .benefit-box {
+        padding: 18px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .benefit-box strong {
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .benefit-box p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .final-cta {
+        position: relative;
+        overflow: hidden;
+        margin-top: 8px;
+      }
+
+      .final-cta::before {
+        content: "";
+        position: absolute;
+        inset: auto auto -80px -80px;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(109, 141, 255, 0.22), transparent 70%);
+      }
+
+      .final-cta > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .final-cta h2 {
+        margin-bottom: 12px;
+      }
+
+      .final-cta p {
+        margin: 0 0 18px;
+        color: var(--muted);
+        line-height: 1.9;
+        max-width: 760px;
+      }
+
+      .trust-line {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .trust-line span {
+        padding: 9px 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      @keyframes pulseWidth {
+        0%,
+        100% {
+          width: 68%;
+        }
+        50% {
+          width: 82%;
+        }
+      }
+
+      @media (max-width: 980px) {
+        .hero-layout,
+        .split-section,
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .benefits-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .hero-panel {
+          padding-top: 42px;
+        }
+
+        .hero-copy,
+        .hero-side,
+        .content-card,
+        .timeline-card,
+        .final-cta {
+          padding: 20px;
+          border-radius: 20px;
+        }
+
+        .hero-points,
+        .hero-stats,
+        .cta-meta,
+        .benefits-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-actions .btn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="logo" href="../index.html">Arabic<span>Business</span></a>
+        <button class="nav-toggle" aria-label="فتح القائمة" aria-expanded="false">☰</button>
+        <nav class="nav">
+          <a href="../index.html">الرئيسية</a>
+          <a href="../courses.html">برامجنا التعليمية</a>
+          <a class="active" href="../e-library.html">المكتبة الرقمية</a>
+          <a href="../blog.html">أكاديمية الأعمال</a>
+          <a href="../news.html">مدونة الأخبار</a>
+          <a href="../contact.html">اتصل بنا</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="trading-landing">
+      <div class="landing-shell">
+        <section class="hero-panel">
+          <div class="container hero-layout">
+            <div class="hero-copy reveal">
+              <span class="hero-kicker">دليل عملي للمبتدئين والطامحين للاحتراف</span>
+              <h1>تداول بوعي لا بعاطفة</h1>
+              <p class="hero-lead">
+                لماذا تتداول؟ هل تبحث عن ربح سريع أم بناء رأس مال على المدى الطويل؟ عندما
+                يصبح الهدف واضحًا، تتحول قراراتك من ردود فعل متوترة إلى خطوات محسوبة. هذه
+                الصفحة صُممت لتقودك إلى فهم التداول كمنظومة: عقلية، خطة، إدارة مخاطر،
+                وانضباط يومي.
+              </p>
+
+              <div class="hero-points">
+                <div class="hero-point">
+                  <strong>ابدأ من السؤال الصحيح</strong>
+                  <span>وضوح الهدف يحميك من الدخول العشوائي والخروج المربك.</span>
+                </div>
+                <div class="hero-point">
+                  <strong>تحكم في الطمع والخوف</strong>
+                  <span>التوازن النفسي ليس رفاهية، بل مهارة أساسية لكل متداول.</span>
+                </div>
+                <div class="hero-point">
+                  <strong>ابنِ صفقتك على خطة</strong>
+                  <span>الدخول والخروج والمخاطرة يجب أن تُحدد قبل التنفيذ لا بعده.</span>
+                </div>
+                <div class="hero-point">
+                  <strong>تعلّم بخطوات واضحة</strong>
+                  <span>من أساسيات السوق إلى القرارات الاستثمارية المدروسة وإدارة المخاطر.</span>
+                </div>
+              </div>
+
+              <div class="hero-actions">
+                <a class="btn btn-primary btn-glow" href="#start-learning">ابدأ رحلتك الآن</a>
+                <a class="btn btn-secondary" href="../contact.html">تواصل للحصول على التفاصيل</a>
+              </div>
+
+              <div class="cta-meta">
+                <div>مناسب لمن يريد خطة واضحة بدل التشتت وكثرة الإشارات المتضاربة.</div>
+                <div>يركز على الانضباط النفسي وإدارة رأس المال قبل البحث عن الربح.</div>
+                <div>يعرض المفاهيم بلغة عربية مباشرة، بسيطة، وقابلة للتطبيق.</div>
+              </div>
+            </div>
+
+            <aside class="hero-side reveal" style="--delay: 120ms">
+              <div>
+                <h2>أهم مهارة ليست قراءة المؤشرات</h2>
+                <p>
+                  يقول المتداولون المحترفون إن ضبط النفس هو الفارق الحقيقي. كل صفقة يجب أن
+                  تُبنى على سبب دخول واضح، ونقطة ربح، ونقطة خسارة، ونسبة مخاطرة مفهومة.
+                </p>
+              </div>
+
+              <div class="mindset-meter">
+                <strong>مؤشر التوازن النفسي</strong>
+                <div class="meter-track" aria-hidden="true">
+                  <div class="meter-fill"></div>
+                </div>
+                <div class="meter-labels">
+                  <span>خوف مفرط</span>
+                  <span style="text-align: center">منطقة الانضباط</span>
+                  <span style="text-align: left">طمع متهور</span>
+                </div>
+              </div>
+
+              <div class="hero-stats">
+                <div class="hero-stat">
+                  <strong data-count="4">0</strong>
+                  <span>أسئلة تحسم جودة كل صفقة</span>
+                </div>
+                <div class="hero-stat">
+                  <strong data-count="3">0</strong>
+                  <span>محاور أساسية: نفسية، خطة، مخاطر</span>
+                </div>
+                <div class="hero-stat">
+                  <strong data-count="100">0</strong>
+                  <span>تركيز على الوضوح والانضباط</span>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="landing-section" id="start-learning">
+          <div class="container">
+            <h2 class="reveal">إذا لم تكن لديك إجابة، فأنت في المكان الصحيح</h2>
+            <p class="section-intro reveal" style="--delay: 80ms">
+              الأسواق المالية عالم واسع ومليء بالفرص، لكنه في الوقت نفسه يتطلب فهمًا
+              عميقًا واستراتيجية واضحة. هنا ستجد مسارًا منهجيًا مبسطًا يساعدك على الانتقال
+              من الحيرة إلى الرؤية، ومن العشوائية إلى القرار الواعي.
+            </p>
+
+            <div class="content-grid">
+              <article class="content-card reveal" style="--delay: 120ms">
+                <div class="card-index">01</div>
+                <h3>حدد هدفك من التداول</h3>
+                <p>
+                  هل تبحث عن دخل إضافي، بناء رأس مال، أم تطوير مهارة استثمارية طويلة
+                  الأجل؟ تحديد الهدف يغيّر طريقة اختيار الفرص ومستوى المخاطرة.
+                </p>
+              </article>
+
+              <article class="content-card reveal" style="--delay: 180ms">
+                <div class="card-index">02</div>
+                <h3>افهم سلوكك قبل السوق</h3>
+                <p>
+                  الطمع يدفعك لفتح صفقات بلا خطة، والخوف يجعلك تخرج مبكرًا أو تمتنع عن
+                  الدخول. بناء المرونة النفسية جزء من بناء النجاح.
+                </p>
+              </article>
+
+              <article class="content-card reveal" style="--delay: 240ms">
+                <div class="card-index">03</div>
+                <h3>اتخذ قرارات مالية مستنيرة</h3>
+                <p>
+                  هدفنا هو تزويدك بالمعرفة والأدوات اللازمة لاتخاذ قرارات حكيمة، بعيدًا عن
+                  المخاطرة غير المحسوبة والاعتماد على العشوائية.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="landing-section">
+          <div class="container split-section">
+            <div class="timeline-card reveal">
+              <h2>كل صفقة تحتاج إلى خطة مسبقة</h2>
+              <p class="section-intro">
+                قبل أن تضغط زر الدخول، يجب أن تكون لديك إجابات واضحة. هذه الأسئلة ليست
+                تفاصيل إضافية، بل هي جوهر الانضباط الذي يفصل بين القرار المدروس والاندفاع.
+              </p>
+              <div class="timeline-list">
+                <div class="timeline-item">
+                  <div class="timeline-badge">1</div>
+                  <div>
+                    <strong>ما سبب الدخول؟</strong>
+                    <p>هل تعتمد على إشارة فنية واضحة أم على خبر أساسي مدروس؟</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-badge">2</div>
+                  <div>
+                    <strong>أين ستخرج إذا ربحت؟</strong>
+                    <p>حدد مستوى <span dir="ltr">Take Profit</span> قبل فتح الصفقة.</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-badge">3</div>
+                  <div>
+                    <strong>أين ستخرج إذا خسرت؟</strong>
+                    <p>ضع <span dir="ltr">Stop Loss</span> يحمي رأس المال قبل أن تحمي الأرباح.</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-badge">4</div>
+                  <div>
+                    <strong>ما نسبة المخاطرة؟</strong>
+                    <p>كل صفقة يجب أن تخضع لقواعد إدارة رأس مال لا تتجاوز قدرتك النفسية والمالية.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-card reveal" style="--delay: 120ms">
+              <h2>ماذا ستستفيد من هذا المحتوى؟</h2>
+              <div class="benefits-grid">
+                <div class="benefit-box">
+                  <strong>أساس قوي</strong>
+                  <p>فهم مبادئ الأسواق المالية وآلية الحركة واتخاذ القرار.</p>
+                </div>
+                <div class="benefit-box">
+                  <strong>منهج تدريجي</strong>
+                  <p>الانتقال خطوة بخطوة من الفهم إلى التحليل ثم إلى التطبيق.</p>
+                </div>
+                <div class="benefit-box">
+                  <strong>إدارة مخاطر فعالة</strong>
+                  <p>تعلم كيف تحمي رأس مالك وتتعامل مع الخسارة بوعي واتزان.</p>
+                </div>
+                <div class="benefit-box">
+                  <strong>رؤية طويلة المدى</strong>
+                  <p>بناء عقلية متداول ومستثمر واعٍ بدل ملاحقة الربح السريع فقط.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="landing-section">
+          <div class="container split-section">
+            <div class="timeline-card reveal">
+              <h2>رحلة واضحة من التعلم إلى التطبيق</h2>
+              <div class="checklist">
+                <div class="check-item">
+                  <div class="check-mark">✓</div>
+                  <div>
+                    <strong>فهم أساسيات الأسواق</strong>
+                    <p>ما الذي يحرك الأسعار؟ وكيف نقرأ السياق بدل مطاردة الحركة؟</p>
+                  </div>
+                </div>
+                <div class="check-item">
+                  <div class="check-mark">✓</div>
+                  <div>
+                    <strong>تحليل البيانات بوعي</strong>
+                    <p>التعامل مع الإشارات الفنية والأخبار الأساسية ضمن إطار منضبط.</p>
+                  </div>
+                </div>
+                <div class="check-item">
+                  <div class="check-mark">✓</div>
+                  <div>
+                    <strong>وضع خطة استثمارية مدروسة</strong>
+                    <p>اختيار ما يناسب أهدافك لا ما يثيرك لحظةً ثم يربكك لاحقًا.</p>
+                  </div>
+                </div>
+                <div class="check-item">
+                  <div class="check-mark">✓</div>
+                  <div>
+                    <strong>بناء محفظة ناجحة</strong>
+                    <p>توزيع أفضل، قرارات أهدأ، وأفق أطول لتحقيق أهدافك المالية.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-card reveal" style="--delay: 120ms">
+              <h2>لمن صممت هذه الصفحة؟</h2>
+              <p class="section-intro">
+                لكل شخص يريد أن يتعلم التداول والاستثمار بأسلوب منهجي مبسط، بعيدًا عن
+                الضجيج والوعود السريعة. إذا كنت تبحث عن أسس قوية تبني عليها خبرتك، فهذا
+                المحتوى موجّه لك.
+              </p>
+              <div class="checklist">
+                <div class="check-item">
+                  <div class="check-mark">01</div>
+                  <div>
+                    <strong>للمبتدئ المتردد</strong>
+                    <p>الذي لا يعرف من أين يبدأ ويريد خريطة طريق واضحة.</p>
+                  </div>
+                </div>
+                <div class="check-item">
+                  <div class="check-mark">02</div>
+                  <div>
+                    <strong>للمتداول العاطفي</strong>
+                    <p>الذي يدخل ويخرج دون خطة ويحتاج إلى ضبط نفسي وإداري.</p>
+                  </div>
+                </div>
+                <div class="check-item">
+                  <div class="check-mark">03</div>
+                  <div>
+                    <strong>للباحث عن استثمار واعٍ</strong>
+                    <p>الذي يريد قرارات مدروسة ورؤية طويلة المدى بدل اللهاث خلف الفرص العابرة.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="landing-section">
+          <div class="container">
+            <div class="final-cta reveal">
+              <h2>ابدأ من الوعي... ثم ابنِ أرباحك على أساس متين</h2>
+              <p>
+                هدفنا أن نزودك بالمعرفة والأدوات التي تساعدك على اتخاذ قرارات مالية حكيمة
+                ومستنيرة. ستتعلم كيف تفكر، كيف تخطط، وكيف تدير المخاطر بفعالية، لتصبح
+                متداولًا ومستثمرًا أكثر هدوءًا واحترافًا.
+              </p>
+              <div class="hero-actions">
+                <a class="btn btn-primary btn-glow" href="../contact.html">أطلب التفاصيل الآن</a>
+                <a class="btn btn-secondary" href="../e-library.html">العودة إلى المكتبة الرقمية</a>
+              </div>
+              <div class="trust-line">
+                <span>خطة واضحة قبل كل صفقة</span>
+                <span>إدارة مخاطر قبل البحث عن الربح</span>
+                <span>عقلية طويلة المدى بدل الانفعال اللحظي</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a class="footer-logo" href="../index.html">Arabic<span>Business</span></a>
+          <p class="footer-tagline">منصتك لإطلاق مشاريع وفق معايير عالمية</p>
+        </div>
+        <nav class="footer-nav" aria-label="روابط التذييل">
+          <a href="../courses.html">برامجنا</a>
+          <a href="../e-library.html">المكتبة</a>
+          <a href="../blog.html">الأكاديمية</a>
+          <a href="../news.html">الأخبار</a>
+          <a href="../contact.html">تواصل</a>
+        </nav>
+        <div class="footer-copy">
+          <span>© 2026 ArabicBusiness — جميع الحقوق محفوظة</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.14 }
+        );
+
+        document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+
+        const counters = document.querySelectorAll("[data-count]");
+        const counterObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+
+              const element = entry.target;
+              const target = Number(element.getAttribute("data-count"));
+              let current = 0;
+              const step = Math.max(1, Math.ceil(target / 30));
+
+              const tick = () => {
+                current = Math.min(target, current + step);
+                element.textContent = current;
+                if (current < target) {
+                  requestAnimationFrame(tick);
+                }
+              };
+
+              tick();
+              counterObserver.unobserve(element);
+            });
+          },
+          { threshold: 0.6 }
+        );
+
+        counters.forEach((counter) => counterObserver.observe(counter));
+      });
+    </script>
+  </body>
+</html>

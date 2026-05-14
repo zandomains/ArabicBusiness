@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>دليل التأشيرة للعمل في أوروبا</title>
+    <meta
+      name="description"
+      content="صفحة هبوط عربية لدليل التأشيرة للعمل في أوروبا، تشرح شروط الأهلية، اللغة، الأوراق، وكيفية تجهيز ملفك بنفسك."
+    />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <style>
+      .visa-landing {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .visa-landing::before,
+      .visa-landing::after {
+        content: "";
+        position: absolute;
+        border-radius: 999px;
+        pointer-events: none;
+        filter: blur(12px);
+      }
+
+      .visa-landing::before {
+        width: 420px;
+        height: 420px;
+        top: 70px;
+        right: -140px;
+        background: radial-gradient(circle, rgba(83, 224, 194, 0.2), transparent 68%);
+      }
+
+      .visa-landing::after {
+        width: 340px;
+        height: 340px;
+        left: -120px;
+        bottom: 120px;
+        background: radial-gradient(circle, rgba(109, 141, 255, 0.2), transparent 70%);
+      }
+
+      .visa-shell {
+        position: relative;
+        z-index: 1;
+      }
+
+      .visa-hero {
+        padding: 68px 0 34px;
+      }
+
+      .visa-hero-grid,
+      .requirements-grid,
+      .advantage-grid,
+      .journey-grid {
+        display: grid;
+      }
+
+      .visa-hero-grid {
+        grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
+        gap: 22px;
+        align-items: stretch;
+      }
+
+      .visa-card,
+      .guide-card,
+      .final-card {
+        background: linear-gradient(180deg, rgba(18, 27, 46, 0.84), rgba(10, 16, 30, 0.92));
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+      }
+
+      .visa-card,
+      .guide-card,
+      .final-card {
+        padding: 28px;
+      }
+
+      .visa-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(83, 224, 194, 0.12);
+        border: 1px solid rgba(83, 224, 194, 0.26);
+        color: #d9fff4;
+        font-size: 0.92rem;
+        margin-bottom: 18px;
+      }
+
+      .visa-card h1 {
+        margin: 0 0 14px;
+        font-size: clamp(2.2rem, 5vw, 4.2rem);
+        line-height: 1.08;
+      }
+
+      .visa-lead {
+        margin: 0 0 22px;
+        color: var(--muted);
+        line-height: 1.95;
+        font-size: 1.04rem;
+      }
+
+      .city-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 0 0 22px;
+      }
+
+      .city-strip span,
+      .micro-note span {
+        padding: 9px 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .hero-points {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .hero-point,
+      .requirement-box,
+      .advantage-box,
+      .journey-step {
+        padding: 18px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .hero-point strong,
+      .requirement-box strong,
+      .advantage-box strong,
+      .journey-step strong {
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .hero-point p,
+      .requirement-box p,
+      .advantage-box p,
+      .journey-step p,
+      .guide-card p,
+      .final-card p,
+      .section-intro {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.85;
+      }
+
+      .guide-card {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        justify-content: space-between;
+      }
+
+      .guide-card h2,
+      .section-head h2,
+      .final-card h2 {
+        margin: 0;
+      }
+
+      .eligibility-meter {
+        padding: 18px;
+        border-radius: 20px;
+        background: linear-gradient(145deg, rgba(83, 224, 194, 0.12), rgba(109, 141, 255, 0.12));
+        border: 1px solid rgba(83, 224, 194, 0.16);
+      }
+
+      .meter-bar {
+        position: relative;
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        overflow: hidden;
+        margin: 12px 0 8px;
+      }
+
+      .meter-bar span {
+        position: absolute;
+        inset: 0;
+        width: 74%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #53e0c2, #6d8dff 55%, #ffd26f);
+        animation: slideBar 5s ease-in-out infinite;
+      }
+
+      .meter-meta,
+      .guide-stats,
+      .requirements-grid,
+      .advantage-grid,
+      .journey-grid {
+        gap: 12px;
+      }
+
+      .meter-meta {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+
+      .guide-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .guide-stat {
+        padding: 14px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .guide-stat strong {
+        display: block;
+        font-size: 1.45rem;
+        margin-bottom: 6px;
+      }
+
+      .guide-stat span {
+        color: var(--muted);
+        font-size: 0.84rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 22px;
+      }
+
+      .hero-actions .btn {
+        min-width: 180px;
+      }
+
+      .micro-note {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .landing-section {
+        padding: 12px 0 26px;
+      }
+
+      .section-head {
+        margin-bottom: 18px;
+      }
+
+      .section-head h2 {
+        font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+        margin-bottom: 10px;
+      }
+
+      .requirements-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .requirement-box .index,
+      .journey-step .index {
+        width: 42px;
+        height: 42px;
+        display: inline-grid;
+        place-items: center;
+        border-radius: 14px;
+        margin-bottom: 14px;
+        background: linear-gradient(135deg, rgba(83, 224, 194, 0.18), rgba(109, 141, 255, 0.18));
+        border: 1px solid rgba(83, 224, 194, 0.18);
+        font-weight: 800;
+      }
+
+      .advantage-grid {
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      }
+
+      .advantage-stack {
+        display: grid;
+        gap: 12px;
+      }
+
+      .journey-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .final-card {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .final-card::before {
+        content: "";
+        position: absolute;
+        width: 240px;
+        height: 240px;
+        border-radius: 50%;
+        left: -80px;
+        bottom: -100px;
+        background: radial-gradient(circle, rgba(83, 224, 194, 0.18), transparent 70%);
+      }
+
+      .final-card > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      @keyframes slideBar {
+        0%,
+        100% {
+          width: 74%;
+        }
+        50% {
+          width: 86%;
+        }
+      }
+
+      @media (max-width: 980px) {
+        .visa-hero-grid,
+        .requirements-grid,
+        .advantage-grid,
+        .journey-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .visa-hero {
+          padding-top: 42px;
+        }
+
+        .visa-card,
+        .guide-card,
+        .final-card {
+          padding: 20px;
+          border-radius: 20px;
+        }
+
+        .hero-points,
+        .guide-stats,
+        .meter-meta {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-actions .btn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="logo" href="../index.html">Arabic<span>Business</span></a>
+        <button class="nav-toggle" aria-label="فتح القائمة" aria-expanded="false">☰</button>
+        <nav class="nav">
+          <a href="../index.html">الرئيسية</a>
+          <a href="../courses.html">برامجنا التعليمية</a>
+          <a class="active" href="../e-library.html">المكتبة الرقمية</a>
+          <a href="../blog.html">أكاديمية الأعمال</a>
+          <a href="../news.html">مدونة الأخبار</a>
+          <a href="../contact.html">اتصل بنا</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="visa-landing">
+      <div class="visa-shell">
+        <section class="visa-hero">
+          <div class="container visa-hero-grid">
+            <div class="visa-card reveal">
+              <span class="visa-kicker">دليل عملي لتأشيرة العمل في أوروبا</span>
+              <h1>رحلة تأشيرتك الأوروبية تبدأ من هنا</h1>
+              <p class="visa-lead">
+                هل تحلم بالعمل في روما، أو استكشاف باريس، أو التجول في برلين؟ السفر إلى
+                أوروبا قصد العمل أصبح أقرب إليك مما تتخيل، لكن تعقيد أنواع التأشيرات
+                والمتطلبات والأوراق يجعل الطريق مربكًا للكثيرين. لهذا صُمم <strong>دليل
+                التأشيرة</strong> ليقودك خطوة بخطوة نحو تجهيز ملفك بنفسك بثقة ووضوح.
+              </p>
+
+              <div class="city-strip">
+                <span>روما</span>
+                <span>باريس</span>
+                <span>برلين</span>
+                <span>منطقة شنغن</span>
+                <span>ملف تأشيرة منظم</span>
+              </div>
+
+              <div class="hero-points">
+                <div class="hero-point">
+                  <strong>تجاوز الحيرة</strong>
+                  <p>افهم نوع التأشيرة المناسب والمتطلبات التي تحتاجها بدون تشتت.</p>
+                </div>
+                <div class="hero-point">
+                  <strong>جهز ملفك بنفسك</strong>
+                  <p>ابدأ في إعداد ملف التأشيرة دون الحاجة إلى وسيط أو مكتب استشاري.</p>
+                </div>
+                <div class="hero-point">
+                  <strong>اعرف شروط الأهلية</strong>
+                  <p>العمر، السجل العدلي، واللغة ليست تفاصيل جانبية بل عناصر حاسمة.</p>
+                </div>
+                <div class="hero-point">
+                  <strong>استفد من المسار الرقمي</strong>
+                  <p>تعرف على طريقة تأمين عقد عمل موثق وشرعي عبر القنوات الرقمية.</p>
+                </div>
+              </div>
+
+              <div class="hero-actions">
+                <a class="btn btn-primary btn-glow" href="#visa-guide">اطلب نسختك الآن</a>
+                <a class="btn btn-secondary" href="../contact.html">تواصل لمعرفة التفاصيل</a>
+              </div>
+
+              <div class="micro-note">
+                <span>بدون وسيط</span>
+                <span>بدون تعقيد زائد</span>
+                <span>بخطة واضحة وقابلة للتنفيذ</span>
+              </div>
+            </div>
+
+            <aside class="guide-card reveal" style="--delay: 120ms">
+              <div>
+                <h2>لماذا هذا الدليل مهم؟</h2>
+                <p>
+                  عندما تضيع بين المتطلبات المتعددة، يصبح حتى أول إجراء صعبًا. هذا الدليل
+                  صُمم ليجمع لك الطريق في صورة أوضح: من فحص الأهلية، إلى تقوية ملفك، إلى
+                  توثيق فرصتك المهنية بشكل يرفع من جودة طلبك.
+                </p>
+              </div>
+
+              <div class="eligibility-meter">
+                <strong>جاهزية ملف التأشيرة</strong>
+                <div class="meter-bar" aria-hidden="true"><span></span></div>
+                <div class="meter-meta">
+                  <span>الشروط الأساسية</span>
+                  <span style="text-align: center">تنظيم الملف</span>
+                  <span style="text-align: left">الخطوة العملية</span>
+                </div>
+              </div>
+
+              <div class="guide-stats">
+                <div class="guide-stat">
+                  <strong data-count="3">0</strong>
+                  <span>شروط أهلية أساسية</span>
+                </div>
+                <div class="guide-stat">
+                  <strong data-count="1">0</strong>
+                  <span>ملف مرتب بدل عشرات الأسئلة</span>
+                </div>
+                <div class="guide-stat">
+                  <strong data-count="100">0</strong>
+                  <span>اعتماد أكبر على المسار الرقمي</span>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="landing-section" id="visa-guide">
+          <div class="container">
+            <div class="section-head">
+              <h2 class="reveal">ما الذي ستتعلمه من دليل التأشيرة؟</h2>
+              <p class="section-intro reveal" style="--delay: 80ms">
+                الهدف ليس فقط فهم المتطلبات، بل تحويلها إلى خطوات عملية تجعلك قادرًا على
+                بناء ملف تأشيرة أكثر قوة وتنظيمًا، والقيام بذلك بنفسك من البداية حتى مرحلة
+                التقديم.
+              </p>
+            </div>
+
+            <div class="requirements-grid">
+              <article class="requirement-box reveal" style="--delay: 120ms">
+                <div class="index">01</div>
+                <strong>الأهلية العمرية</strong>
+                <p>
+                  يجب أن يتراوح عمر المتقدم بين 18 و30 عامًا عند تقديم الطلب، بما يتوافق
+                  مع المعايير المرتبطة ببرامج الشباب المتاحة في بعض الدول الأوروبية.
+                </p>
+              </article>
+
+              <article class="requirement-box reveal" style="--delay: 180ms">
+                <div class="index">02</div>
+                <strong>السجل العدلي النظيف</strong>
+                <p>
+                  يشترط إثبات خلو السجل الجنائي من الأحكام أو القيود السابقة، لأن الخلفية
+                  النظيفة تدعم الثقة في الملف وترفع من قابلية قبوله.
+                </p>
+              </article>
+
+              <article class="requirement-box reveal" style="--delay: 240ms">
+                <div class="index">03</div>
+                <strong>إثبات اللغة</strong>
+                <p>
+                  يجب إظهار مستوى مقبول في لغة البلد المضيف، لأن القدرة على الفهم والتواصل
+                  مؤشر أساسي على الاندماج والاستعداد الجاد.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="landing-section">
+          <div class="container advantage-grid">
+            <div class="visa-card reveal">
+              <div class="section-head">
+                <h2>إذا لم تكن لديك شهادة لغوية بعد</h2>
+                <p class="section-intro">
+                  غياب شهادة جاهزة لا يعني نهاية الفرصة. المهم هو أن تُظهر جدية واضحة
+                  ومبادرة حقيقية في تقوية هذا الجانب من ملفك.
+                </p>
+              </div>
+
+              <div class="advantage-stack">
+                <div class="advantage-box">
+                  <strong>سجل في مركز لغوي معتمد</strong>
+                  <p>ابدأ خطوة فعلية بدل الاكتفاء بالنية، لأن التسجيل الرسمي دليل التزام.</p>
+                </div>
+                <div class="advantage-box">
+                  <strong>احتفظ بعقد أو شهادة بداية التعلم</strong>
+                  <p>هذه الوثيقة تساعد على إثبات الجدية في تطوير المهارات المطلوبة.</p>
+                </div>
+                <div class="advantage-box">
+                  <strong>حوّل نقطة الضعف إلى عنصر دعم</strong>
+                  <p>كلما كان ملفك يثبت المبادرة والالتزام، تحسنت صورته أمام الجهة المعنية.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="guide-card reveal" style="--delay: 120ms">
+              <h2>الميزة الأكثر ثورية في هذا المسار</h2>
+              <p>
+                يمنحك هذا الدليل الأدوات والاستراتيجيات اللازمة لتأمين عقد عمل موثق وشرعي
+                بنفسك، بشكل حصري عبر منصات التواصل الاجتماعي، دون الحاجة إلى زيارة المكاتب
+                أو الغرق في الإجراءات الورقية المعقدة.
+              </p>
+              <p>
+                بمجرد إتمام الاتفاق عبر القنوات الرقمية المتاحة، يمكنك توثيق العقد
+                وتوقيعه إلكترونيًا. هذا يعني أن كامل العملية، من البحث إلى التوثيق، تصبح
+                أكثر استقلالًا وسرعة ومواكبة للعصر الرقمي.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="landing-section">
+          <div class="container">
+            <div class="section-head">
+              <h2 class="reveal">كيف يساعدك الدليل خطوة بخطوة؟</h2>
+              <p class="section-intro reveal" style="--delay: 80ms">
+                بدل التشتت بين النصائح العامة، ستحصل على تصور عملي لمسار واضح يمكنك
+                اتباعه لتجهيز طلبك بثقة أكبر.
+              </p>
+            </div>
+
+            <div class="journey-grid">
+              <article class="journey-step reveal" style="--delay: 120ms">
+                <div class="index">1</div>
+                <strong>تحديد المسار المناسب</strong>
+                <p>فهم نوع التأشيرة والمتطلبات الضرورية للدخول إلى شنغن أو غيرها.</p>
+              </article>
+              <article class="journey-step reveal" style="--delay: 180ms">
+                <div class="index">2</div>
+                <strong>تجهيز الملف</strong>
+                <p>ترتيب الأوراق الداعمة وبناء ملف يظهر الجدية والاستعداد.</p>
+              </article>
+              <article class="journey-step reveal" style="--delay: 240ms">
+                <div class="index">3</div>
+                <strong>تأمين فرصة العمل</strong>
+                <p>استخدام المنصات الرقمية للوصول إلى عقد موثق وشرعي بصورة مستقلة.</p>
+              </article>
+              <article class="journey-step reveal" style="--delay: 300ms">
+                <div class="index">4</div>
+                <strong>رفع جودة الطلب</strong>
+                <p>تقديم ملف أكثر تماسكًا وثقة، دون الاعتماد على وسطاء غير ضروريين.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="landing-section">
+          <div class="container">
+            <div class="final-card reveal">
+              <h2>ابدأ ملف تأشيرتك بنفسك وبثقة أكبر</h2>
+              <p>
+                اطلب نسختك الآن من دليل التأشيرة، وابدأ في إعداد ملف التأشيرة الخاص بك
+                بنفسك، دون الحاجة إلى أي وسيط أو مكتب استشاري. كلما فهمت الشروط مبكرًا
+                ونظمت خطواتك بشكل أفضل، اقتربت أكثر من تأشيرة حلمك الأوروبي.
+              </p>
+              <div class="hero-actions">
+                <a class="btn btn-primary btn-glow" href="../contact.html">أطلب نسختك الآن</a>
+                <a class="btn btn-secondary" href="../e-library.html">العودة إلى المكتبة الرقمية</a>
+              </div>
+              <div class="micro-note">
+                <span>ملف أوضح</span>
+                <span>خطوات عملية</span>
+                <span>اعتماد أكبر على نفسك</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a class="footer-logo" href="../index.html">Arabic<span>Business</span></a>
+          <p class="footer-tagline">منصتك لإطلاق مشاريع وفق معايير عالمية</p>
+        </div>
+        <nav class="footer-nav" aria-label="روابط التذييل">
+          <a href="../courses.html">برامجنا</a>
+          <a href="../e-library.html">المكتبة</a>
+          <a href="../blog.html">الأكاديمية</a>
+          <a href="../news.html">الأخبار</a>
+          <a href="../contact.html">تواصل</a>
+        </nav>
+        <div class="footer-copy">
+          <span>© 2026 ArabicBusiness — جميع الحقوق محفوظة</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.14 }
+        );
+
+        document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+
+        const counters = document.querySelectorAll("[data-count]");
+        const counterObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+
+              const element = entry.target;
+              const target = Number(element.getAttribute("data-count"));
+              let current = 0;
+              const step = Math.max(1, Math.ceil(target / 30));
+
+              const tick = () => {
+                current = Math.min(target, current + step);
+                element.textContent = current;
+                if (current < target) requestAnimationFrame(tick);
+              };
+
+              tick();
+              counterObserver.unobserve(element);
+            });
+          },
+          { threshold: 0.6 }
+        );
+
+        counters.forEach((counter) => counterObserver.observe(counter));
+      });
+    </script>
+  </body>
+</html>
