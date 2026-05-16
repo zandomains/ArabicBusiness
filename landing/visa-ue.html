@@ -73,13 +73,38 @@
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        padding: 8px 14px;
+        padding: 10px 18px;
         border-radius: 999px;
-        background: rgba(109, 141, 255, 0.12);
-        border: 1px solid rgba(109, 141, 255, 0.28);
-        color: #e4ebff;
-        font-size: 0.92rem;
+        background: linear-gradient(135deg, rgba(109, 141, 255, 0.2), rgba(83, 224, 194, 0.14));
+        border: 1px solid rgba(109, 141, 255, 0.34);
+        color: #f4f8ff;
+        font-size: 0.95rem;
+        font-weight: 800;
+        letter-spacing: 0.2px;
         margin-bottom: 18px;
+        box-shadow: 0 12px 30px rgba(8, 12, 22, 0.28);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #53e0c2, #6d8dff);
+        box-shadow: 0 0 18px rgba(83, 224, 194, 0.7);
+        flex: 0 0 10px;
+      }
+
+      .eyebrow::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.18) 50%, transparent 80%);
+        transform: translateX(-100%);
+        animation: eyebrowShine 5.5s ease-in-out infinite;
+        pointer-events: none;
       }
 
       .hero-card h1,
@@ -111,6 +136,8 @@
         flex-wrap: wrap;
         gap: 12px;
         margin-top: 22px;
+        justify-content: center;
+        align-items: center;
       }
 
       .hero-actions .btn {
@@ -223,24 +250,98 @@
         margin-top: 18px;
       }
 
+      .video-player-card {
+        padding: 18px;
+        border-radius: 22px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .video-player-frame {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 18px;
+        overflow: hidden;
+        background: linear-gradient(135deg, rgba(109, 141, 255, 0.12), rgba(83, 224, 194, 0.08)),
+          rgba(5, 8, 15, 0.72);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .video-player-frame iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+
+      .video-player-placeholder {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 24px;
+        color: #f2f6ff;
+      }
+
+      .video-player-placeholder strong {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+      }
+
+      .video-player-placeholder p {
+        margin: 0;
+        color: var(--muted);
+        max-width: 560px;
+      }
+
+      .video-player-meta {
+        margin-top: 14px;
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.8;
+      }
+
       .video-card {
         padding: 22px;
       }
 
-      .video-frame {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 16 / 9;
+      .video-link-shell {
+        display: grid;
+        gap: 16px;
+        padding: 24px;
         border-radius: 20px;
-        overflow: hidden;
         border: 1px solid rgba(255, 255, 255, 0.08);
-        background: rgba(0, 0, 0, 0.28);
+        background:
+          linear-gradient(135deg, rgba(109, 141, 255, 0.16), rgba(83, 224, 194, 0.1)),
+          rgba(255, 255, 255, 0.03);
       }
 
-      .video-frame iframe {
-        width: 100%;
-        height: 100%;
-        border: 0;
+      .video-link-badge {
+        width: 70px;
+        height: 70px;
+        display: grid;
+        place-items: center;
+        border-radius: 22px;
+        background: rgba(8, 13, 24, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 1.7rem;
+      }
+
+      .video-link-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .video-link-actions .btn {
+        min-width: 190px;
+      }
+
+      .video-trigger.active {
+        box-shadow: var(--shadow);
+        transform: translateY(-2px);
       }
 
       .video-copy {
@@ -273,6 +374,17 @@
         display: flex;
         justify-content: center;
         margin-top: 22px;
+      }
+
+      @keyframes eyebrowShine {
+        0%,
+        100% {
+          transform: translateX(-100%);
+        }
+        45%,
+        55% {
+          transform: translateX(100%);
+        }
       }
 
       @media (max-width: 860px) {
@@ -341,38 +453,17 @@
               <span class="eyebrow">المسار القانوني للمغاربة نحو أوروبا</span>
               <h1>بوابتك القانونية نحو مستقبل مهني في أوروبا</h1>
               <p class="hero-lead">
-                إذا كنت تطمح لبدء حياة مهنية جديدة في قلب أوروبا، فهذه الصفحة تضع أمامك
-                الطريق بشكل عمودي واضح ومباشر: فهم المسار، مشاهدة الشرح، ثم التواصل عبر
-                البريد الإلكتروني بنفس الإعداد المعتمد في صفحة التواصل.
+                إذا كنت تطمح إلى بداية مهنية جديدة داخل أوروبا، فهذه الصفحة صممت لتضع
+                أمامك المسار القانوني بشكل واضح ومباشر. ستتعرف هنا على الخطوات الأساسية
+                التي يحتاجها المغربي الباحث عن فرصة عمل حقيقية، من فهم المسار العام،
+                إلى متابعة الشرح بالفيديو، ثم الانتقال إلى مرحلة التواصل والاستفسار
+                حول تفاصيل البرنامج.
               </p>
 
               <div class="hero-actions">
                 <a class="btn btn-primary btn-glow" href="#visa-videos">شاهد البرنامج التعليمي </a>
                 <a class="btn btn-secondary" href="#contact-email">اطلب اشتراكك في البرنامج</a>
               </div>
-
-              <div class="country-row">
-                <div class="country-pill">فرنسا</div>
-                <div class="country-pill">إيطاليا</div>
-                <div class="country-pill">إسبانيا</div>
-                <div class="country-pill">ألمانيا</div>
-              </div>
-
-              <div class="stats-strip">
-                <div class="stat-box">
-                  <strong data-count="4">0</strong>
-                  <span>وجهات أوروبية رئيسية</span>
-                </div>
-                <div class="stat-box">
-                  <strong data-count="2">0</strong>
-                  <span>فيديوهات أساسية للانطلاق</span>
-                </div>
-                <div class="stat-box">
-                  <strong data-count="1">0</strong>
-                  <span>مسار قانوني أوضح من البداية</span>
-                </div>
-              </div>
-
               <div class="proof-row">
                 <div class="proof-pill">توجيه أوضح</div>
                 <div class="proof-pill">تجنب الوسطاء</div>
@@ -395,19 +486,19 @@
               <div class="info-grid">
                 <div class="info-box">
                   <strong>حساب مهني منظم</strong>
-                  <p>بداية قوية على المواقع الرسمية بدل المحاولات العشوائية غير الواضحة.</p>
+                  <p>تبدأ الرحلة بفتح حساب مهني على المنصات الرسمية المعتمدة حتى يكون حضورك واضحًا وجاهزًا للتقديم.</p>
                 </div>
                 <div class="info-box">
                   <strong>سيرة ذاتية أوروبية</strong>
-                  <p>صياغة أفضل تتوافق مع المعايير المطلوبة في الوجهة التي تستهدفها.</p>
+                  <p>تتعلم كيف تصيغ سيرة ذاتية بصيغة أوروبية مهنية تناسب البلد الذي تستهدفه وتزيد من قوة ملفك.</p>
                 </div>
                 <div class="info-box">
                   <strong>عقد عمل رسمي</strong>
-                  <p>فهم المسار الذي يقود إلى فرصة أكثر تنظيمًا وقابلية للتوثيق.</p>
+                  <p>الهدف ليس وعودًا عامة، بل الوصول إلى فرصة عمل موثقة وقابلة للاعتماد ضمن ملفك القانوني.</p>
                 </div>
                 <div class="info-box">
                   <strong>ملف تأشيرة أقوى</strong>
-                  <p>تقليل الأخطاء الإدارية وتقديم صورة أكثر مهنية من البداية.</p>
+                  <p>كل خطوة مدروسة هنا تهدف إلى تقوية ملف التأشيرة وتجنب الأخطاء الإدارية التي تضعف فرص القبول.</p>
                 </div>
               </div>
             </article>
@@ -419,43 +510,97 @@
             <article class="section-card reveal">
               <h2 class="section-title">الفيديوهات الرئيسية</h2>
               <p>
-                هنا وضعت الفيديوهين الأساسيين في واجهة عمودية بسيطة حتى تكون المتابعة
-                أسهل، خصوصًا على الهاتف. يمكنك تشغيل كل فيديو مباشرة من Google Drive.
+                الفيديوهان التاليان يشكلان نقطة البداية لفهم البرنامج بشكل عملي. الأول
+                يمنحك صورة عامة عن الفكرة والمسار، والثاني يشرح لك كيف تنتقل من المعرفة
+                إلى التطبيق بخطوات أقرب إلى الواقع.
               </p>
 
               <div class="video-stack">
-                <div class="video-card reveal" style="--delay: 80ms">
-                  <div class="video-frame">
+                <div class="video-player-card reveal" style="--delay: 40ms">
+                  <div class="video-player-frame">
+                    <div id="video-player-placeholder" class="video-player-placeholder">
+                      <div>
+                        <strong>اختر الفيديو الذي تريد مشاهدته</strong>
+                        <p>
+                          اضغط على أحد الزرين في الأسفل ليظهر الفيديو ويعمل مباشرة داخل هذه
+                          الصفحة بدون الخروج إلى نافذة أخرى.
+                        </p>
+                      </div>
+                    </div>
                     <iframe
-                      src="https://drive.google.com/file/d/1Ti83yvv4V83RuqBgRby2X6gtSjnl4rhq/view?usp=sharing"
-                      allow="autoplay"
+                      id="main-video-player"
+                      title="مشغل الفيديو"
                       loading="lazy"
-                      title="الفيديو الرئيسي الأول"
+                      allow="autoplay"
+                      style="display: none"
                     ></iframe>
                   </div>
+                  <div id="video-player-meta" class="video-player-meta">
+                    سيتم عرض وصف الفيديو المختار هنا بعد الضغط على زر المشاهدة.
+                  </div>
+                </div>
+
+                <div class="video-card reveal" style="--delay: 80ms">
+                  <div class="video-link-shell">
+                    <div class="video-link-badge" aria-hidden="true">▶</div>
+                    <div class="video-link-actions">
+                      <button
+                        type="button"
+                        class="btn btn-primary btn-glow video-trigger"
+                        data-video-url="https://drive.google.com/file/d/1Ti83yvv4V83RuqBgRby2X6gtSjnl4rhq/preview"
+                        data-video-title="الفيديو الأول: فهم المسار القانوني"
+                        data-video-desc="هذا الفيديو يشرح لك الإطار العام للعمل القانوني في أوروبا، وما الذي يجعل هذا المسار مناسبًا لمن يبحث عن بداية آمنة وواضحة بعيدًا عن المعلومات المبعثرة."
+                      >
+                        مشاهدة الفيديو الأول هنا
+                      </button>
+                      <a
+                        class="btn btn-primary btn-glow"
+                        href="https://drive.google.com/file/d/1Ti83yvv4V83RuqBgRby2X6gtSjnl4rhq/view?usp=sharing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        فتحه في Google Drive
+                      </a>
+                    </div>
+                  </div>
                   <div class="video-copy">
-                    <strong>الفيديو الرئيسي الأول</strong>
+                    <strong>الفيديو الأول: فهم المسار القانوني</strong>
                     <p>
-                      مقدمة عملية لفهم المسار وبناء تصور أولي أوضح قبل الانتقال إلى الخطوات
-                      التنفيذية.
+                      هذا الفيديو يشرح لك الإطار العام للعمل القانوني في أوروبا، وما الذي
+                      يجعل هذا المسار مناسبًا لمن يبحث عن بداية آمنة وواضحة بعيدًا عن
+                      المعلومات المبعثرة.
                     </p>
                   </div>
                 </div>
 
                 <div class="video-card reveal" style="--delay: 140ms">
-                  <div class="video-frame">
-                    <iframe
-                      src="https://drive.google.com/file/d/1fUvDgQGHrGOyKHmLYugbdI4W62YkNAU8/view?usp=sharing"
-                      allow="autoplay"
-                      loading="lazy"
-                      title="الفيديو الرئيسي الثاني"
-                    ></iframe>
+                  <div class="video-link-shell">
+                    <div class="video-link-badge" aria-hidden="true">▶</div>
+                    <div class="video-link-actions">
+                      <button
+                        type="button"
+                        class="btn btn-primary btn-glow video-trigger"
+                        data-video-url="https://drive.google.com/file/d/1fUvDgQGHrGOyKHmLYugbdI4W62YkNAU8/preview"
+                        data-video-title="الفيديو الثاني: من التسجيل إلى الملف"
+                        data-video-desc="في هذا الجزء ستفهم كيف تربط بين التسجيل المهني، إعداد الوثائق، وبناء ملف أكثر تماسكًا واستعدادًا للانتقال إلى مرحلة العقد والتأشيرة."
+                      >
+                        مشاهدة الفيديو الثاني هنا
+                      </button>
+                      <a
+                        class="btn btn-primary btn-glow"
+                        href="https://drive.google.com/file/d/1fUvDgQGHrGOyKHmLYugbdI4W62YkNAU8/view?usp=sharing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        فتحه في Google Drive
+                      </a>
+                    </div>
                   </div>
                   <div class="video-copy">
-                    <strong>الفيديو الرئيسي الثاني</strong>
+                    <strong>الفيديو الثاني: من التسجيل إلى الملف</strong>
                     <p>
-                      متابعة تطبيقية تساعدك على ربط المعلومات بالخطوات العملية من التسجيل
-                      حتى الملف القانوني.
+                      في هذا الجزء ستفهم كيف تربط بين التسجيل المهني، إعداد الوثائق، وبناء
+                      ملف أكثر تماسكًا واستعدادًا للانتقال إلى مرحلة العقد والتأشيرة.
                     </p>
                   </div>
                 </div>
@@ -469,8 +614,9 @@
             <article class="section-card reveal">
               <h2 class="section-title">الطريق بشكل عمودي وواضح</h2>
               <p>
-                بدل توزيع المعلومات في أعمدة متقابلة، أصبحت الرحلة هنا مرتبة سطرًا بعد
-                سطر، حتى تكون القراءة أكثر هدوءًا وسهولة على كل المقاسات.
+                قسمنا الرحلة هنا إلى مراحل متتابعة حتى يكون فهمها أسهل. بدل أن تضيع بين
+                معلومات متفرقة، ستجد الطريق مرتبًا من أول خطوة مهنية إلى آخر مرحلة في
+                تجهيز الملف القانوني.
               </p>
 
               <div class="steps-grid">
@@ -478,28 +624,28 @@
                   <div class="step-number">1</div>
                   <div>
                     <strong>ابدأ من الحساب المهني</strong>
-                    <p>سجل في المنصات المناسبة وابدأ بناء حضور احترافي منظم.</p>
+                    <p>أنشئ حضورك المهني على المواقع الرسمية بطريقة صحيحة، لأن هذه الخطوة هي المدخل الأول لأي فرصة جدية.</p>
                   </div>
                 </div>
                 <div class="step-box">
                   <div class="step-number">2</div>
                   <div>
                     <strong>جهز ملفك بصورة أوروبية</strong>
-                    <p>حسن السيرة الذاتية وطريقة التقديم بما يلائم السوق المستهدف.</p>
+                    <p>اضبط السيرة الذاتية وطريقة تقديمك حتى تعكس صورة مهنية متوافقة مع متطلبات أصحاب العمل في أوروبا.</p>
                   </div>
                 </div>
                 <div class="step-box">
                   <div class="step-number">3</div>
                   <div>
                     <strong>افهم مسار العقد الرسمي</strong>
-                    <p>اجعل هدفك واضحًا: فرصة موثقة تقوي ملفك القانوني بدل الوعود العامة.</p>
+                    <p>التركيز هنا على فرصة عمل موثقة ورسميّة، لأن العقد المعتمد هو حجر الأساس في أي ملف تأشيرة قوي.</p>
                   </div>
                 </div>
                 <div class="step-box">
                   <div class="step-number">4</div>
                   <div>
                     <strong>قدّم بثقة أكبر</strong>
-                    <p>عندما تكون الخطوات أوضح، يصبح ملف التأشيرة أكثر تماسكًا واستعدادًا.</p>
+                    <p>عندما تكون كل مرحلة واضحة ومفهومة، يصبح تقديم ملفك للقنصلية أكثر تنظيمًا واحترافية.</p>
                   </div>
                 </div>
               </div>
@@ -512,9 +658,9 @@
             <article class="contact-card reveal">
               <h2>التواصل عبر البريد الإلكتروني فقط</h2>
               <p>
-                أبقيت لك فقط زر الإرسال المباشر بالبريد، وبنفس وجهة المراسلة المعتمدة في
-                صفحة التواصل. بالضغط على الزر سيفتح تطبيق البريد مع عنوان ورسالة جاهزين
-                بشكل مناسب لهذه الصفحة.
+                إذا رغبت في الحصول على تفاصيل إضافية أو الاستفسار حول طريقة الاستفادة من
+                البرنامج، يمكنك التواصل مباشرة عبر البريد الإلكتروني. أبقينا هنا زرًا
+                واحدًا بسيطًا يفتح لك رسالة جاهزة إلى الجهة المعتمدة في الموقع.
               </p>
               <div class="contact-button-row">
                 <a id="email-cta" class="btn btn-primary btn-glow" href="mailto:steps.studio.info@gmail.com">
@@ -601,6 +747,37 @@
 
           emailButton.href = `mailto:steps.studio.info@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
         }
+
+        const videoPlayer = document.getElementById("main-video-player");
+        const videoPlaceholder = document.getElementById("video-player-placeholder");
+        const videoMeta = document.getElementById("video-player-meta");
+        const videoTriggers = document.querySelectorAll(".video-trigger");
+
+        videoTriggers.forEach((trigger) => {
+          trigger.addEventListener("click", () => {
+            const url = trigger.getAttribute("data-video-url");
+            const title = trigger.getAttribute("data-video-title");
+            const desc = trigger.getAttribute("data-video-desc");
+
+            videoTriggers.forEach((btn) => btn.classList.remove("active"));
+            trigger.classList.add("active");
+
+            if (videoPlayer && url) {
+              videoPlayer.src = url;
+              videoPlayer.style.display = "block";
+            }
+
+            if (videoPlaceholder) {
+              videoPlaceholder.style.display = "none";
+            }
+
+            if (videoMeta) {
+              videoMeta.innerHTML = `<strong>${title}</strong><br>${desc}`;
+            }
+
+            document.getElementById("visa-videos")?.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        });
       });
     </script>
   </body>
