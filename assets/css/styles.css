@@ -609,6 +609,7 @@ html[dir="rtl"] .footer-copy {
 .post-content p {
   color: #e6edff;
   line-height: 1.7;
+  text-align: justify;
 }
 
 .post-highlight {
@@ -618,6 +619,7 @@ html[dir="rtl"] .footer-copy {
   background: rgba(255, 255, 255, 0.04);
   border-radius: 8px;
   margin: 14px 0;
+  text-align: justify;
 }
 
 .post-stats {
